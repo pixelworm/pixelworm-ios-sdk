@@ -8,12 +8,12 @@
 - [Usage](#usage)
 
 ## Purpose of this SDK
-This SDK exports your excellent views to `Pixelworm`’s database. After exporting your views and your design files to `Pixelworm` you can enjoy suggestions about how to improve your designs.
+Pixelworm SDK exports your excellent views to `Pixelworm`’s database. After exporting your views and your design files to `Pixelworm` you can enjoy suggestions about how to improve your designs.
 
 ## Installation
 
 ### Cocoapods
-To integrate `Pixelworm iOS SDK` into your project you must add this line to your `Podfile`.
+To integrate `Pixelworm iOS SDK` into your project you must add following line to your `Podfile`.
 
 ```ruby
 pod ‘Pixelworm’
@@ -28,7 +28,7 @@ pod install
 ## Usage
 After integrating SDK into your project navigate to your `AppDelegate.swift` file.
 - Add `import PixelwormSDK` to the top of the file.
-- In `application(_:didFinishLaunchingWithOptions:)` function, add lines below.
+- In `application(_:didFinishLaunchingWithOptions:)` function, add lines below. Make sure you replace `YOUR_API_KEY` and `YOUR_SECRET_KEY` with your application’s keys.
 
 ```swift
 do {
