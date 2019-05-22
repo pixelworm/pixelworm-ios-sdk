@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="PixelwormSDKExamples" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFo-cm-6cT">
+                                <rect key="frame" x="16" y="180" width="288" height="140"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugd-iK-c4z">
+                                        <rect key="frame" x="126.5" y="54" width="35" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="1VE-Vs-qgJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Hello">
+                                            <color key="titleColor" red="0.99888592958450317" green="0.5733262300491333" blue="0.18282905220985413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="helloButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yZf-l1-rFb"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pixelworm" translatesAutoresizingMaskIntoConstraints="NO" id="PIl-89-yNr">
+                                        <rect key="frame" x="0.0" y="0.0" width="288" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="sKv-JY-Dv9"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please make sure you've replaced keys with your application's keys in AppDelegate.swift file." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrK-K8-rOe">
+                                        <rect key="frame" x="0.0" y="84" width="288" height="56"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                        <color key="textColor" red="0.1811155378818512" green="0.38155734539031982" blue="0.90452778339385986" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QrK-K8-rOe" secondAttribute="trailing" id="8gw-6H-9KY"/>
+                                    <constraint firstItem="ugd-iK-c4z" firstAttribute="centerX" secondItem="aFo-cm-6cT" secondAttribute="centerX" id="AcG-U2-xgh"/>
+                                    <constraint firstItem="PIl-89-yNr" firstAttribute="leading" secondItem="aFo-cm-6cT" secondAttribute="leading" id="DZO-QP-Gp9"/>
+                                    <constraint firstItem="ugd-iK-c4z" firstAttribute="top" secondItem="PIl-89-yNr" secondAttribute="bottom" id="QsX-aY-fWO"/>
+                                    <constraint firstItem="QrK-K8-rOe" firstAttribute="top" secondItem="ugd-iK-c4z" secondAttribute="bottom" id="Um1-Ss-cRg"/>
+                                    <constraint firstAttribute="trailing" secondItem="PIl-89-yNr" secondAttribute="trailing" id="Wf8-Yx-on7"/>
+                                    <constraint firstAttribute="height" constant="140" id="irg-Wa-ame"/>
+                                    <constraint firstItem="QrK-K8-rOe" firstAttribute="leading" secondItem="aFo-cm-6cT" secondAttribute="leading" id="lb6-Of-aIW"/>
+                                    <constraint firstItem="PIl-89-yNr" firstAttribute="top" secondItem="aFo-cm-6cT" secondAttribute="top" id="why-Vt-HPC"/>
+                                    <constraint firstAttribute="bottom" secondItem="QrK-K8-rOe" secondAttribute="bottom" id="zc4-vf-OIi"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.024703770756185697" blue="0.078125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aFo-cm-6cT" secondAttribute="trailing" constant="16" id="UbZ-BZ-ysw"/>
+                            <constraint firstItem="aFo-cm-6cT" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="10" id="WX4-hl-Lrc"/>
+                            <constraint firstItem="aFo-cm-6cT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="dMX-WT-kg3"/>
+                            <constraint firstItem="aFo-cm-6cT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="oGT-FF-nem"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="123.75" y="20"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Pixelworm" width="488" height="97"/>
+    </resources>
+</document>

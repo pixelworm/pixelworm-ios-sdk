@@ -31,29 +31,41 @@ After integrating SDK into your project navigate to your `AppDelegate.swift` fil
 - In `application(_:didFinishLaunchingWithOptions:)` function, add lines below. Make sure you replace `YOUR_API_KEY` and `YOUR_SECRET_KEY` with your application’s keys.
 
 ```swift
+#if DEBUG
+
 do {
-  try Pixelworm.shared.attach(withApiKey: “YOUR_API_KEY”, andSecretKey: “YOUR_SECRET_KEY”)
+  try Pixelworm.attach(withApiKey: "YOUR_API_KEY", andSecretKey: "YOUR_SECRET_KEY")
 } catch let error {
   /*
    * TODO:
    * Handle errors as you wish.
    * Errors will be type of `PixelwormError`.
    */
+   
+   print("An error occurred while attaching Pixelworm, error: \(error)")
 }
+
+#endif
 ```
 
 - In `applicationWillTerminate(_:)` add lines below.
 
 ```swift
+#if DEBUG
+
 do {
-  try Pixelworm.shared.detach()
+  try Pixelworm.detach()
 } catch let error {
   /*
    * TODO:
    * Handle errors as you wish.
    * Errors will be type of `PixelwormError`.
    */
+   
+   print("An error occurred while detaching Pixelworm, error: \(error)")
 }
+
+#endif
 ```
 
 - You're good to go. Just launch your application and check `Pixelworm`'s Screen page!
