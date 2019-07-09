@@ -11,6 +11,14 @@ import Foundation
 internal class TypeCounter {
     private static var types = [String: Int]()
     
+    /**
+     * Private constructor.
+     * We don't want anyone to an create instance of `TypeCounter`.
+     */
+    private init() {
+        
+    }
+    
     public static func reset() {
         types.removeAll()
     }

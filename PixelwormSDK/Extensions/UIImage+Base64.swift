@@ -15,7 +15,7 @@ internal extension UIImage {
     func convertImageToBase64() -> String {
         let imageData = self.pngData()!
         
-        return imageData.base64EncodedString(options: .lineLength64Characters)
+        return imageData.base64EncodedString(options: [])
     }
     
     //

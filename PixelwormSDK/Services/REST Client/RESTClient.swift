@@ -61,6 +61,12 @@ internal class RESTClient {
             request.httpBody = try! JSONEncoder().encode(bodyUnwrapped)
         }
         
+        // Put version info to request header
+        request.setValue(
+            BundleManager.applicationVersion,
+            forHTTPHeaderField: "X-Requester-Version"
+        )
+        
         // Create data task
         let task = URLSession.shared.dataTask(with: request) { result in
             switch (result) {

@@ -1,5 +1,5 @@
 //
-//  UIApplication+GetTopMostViewController.swift
+//  UIApplication+RootAndGetTopMostViewController.swift
 //  PixelwormSDK
 //
 //  Created by Doğu Emre DEMİRÇİVİ on 22.05.2019.
@@ -9,8 +9,12 @@
 import Foundation
 
 internal extension UIApplication {
+    class var rootViewController: UIViewController? {
+        return UIApplication.shared.keyWindow?.rootViewController
+    }
+    
     class func getTopMostViewController(
-        parent: UIViewController? = UIApplication.shared.keyWindow?.rootViewController
+        parent: UIViewController? = rootViewController
     ) -> UIViewController? {
         // Go deeper if type is `UINavigationController`
         if let navigationController = parent as? UINavigationController {

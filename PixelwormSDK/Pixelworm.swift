@@ -73,7 +73,9 @@ public class Pixelworm {
     }
 
     private func upsertScreenIfChanged() {
-        let activeViewController = UIApplication.getTopMostViewController()
+        let activeViewController = UIApplication.rootViewController
+        
+        let topMostViewControllerName = UIApplication.getTopMostViewController()?.className ?? "FailedToGetViewControllerName"
         
         let activeView = activeViewController!.view!
         
@@ -82,9 +84,9 @@ public class Pixelworm {
         getConstraints(toList: &constraintDtos, ofView: activeView)
         
         let request = UpsertScreenRequest(
-            uniqueId: activeViewController!.className,
+            uniqueId: topMostViewControllerName,
             // TODO: Get actual view controller name
-            name: activeViewController!.className,
+            name: topMostViewControllerName,
             base64Image: activeViewController!.view.asImage().convertImageToBase64(),
             view: convertUIViewsToViews(views: [activeView])[0],
             constraints: constraintDtos
@@ -112,10 +114,46 @@ public class Pixelworm {
                 case .widthMismatch:
                     print("Failed to export \(request.name). Please make sure your simulator's screen width equals to Pixelworm Application's width setting.")
                 }
+                
             case .failure(let error):
                 print("Failed to upload screen information to Pixelworm servers, error: \(error)")
             }
         }
+    }
+    
+    private func createViewDto(fromView view: UIView) -> UpsertScreenRequest.View {
+        var viewDto = UpsertScreenRequest.View(
+            uniqueId: view.identifier,
+            // TODO: Get actual view name
+            name: view.className,
+            contentMode: getConvertedContentMode(view.contentMode)!,
+            frame: view.asRectangle(),
+            zIndex: view.superview!.subviews.firstIndex(of: view)!,
+            base64Image: view.asImage().convertImageToBase64(),
+            views: []
+        )
+        
+        // NOTE: We hide scroll indicators because our SDK exports scroll bars too, which are UIImageView
+        var oldStates = [String: Any]()
+        
+        // Save state
+        if let scrollView = view as? UIScrollView {
+            oldStates["showsHorizontalScrollIndicator"] = scrollView.showsHorizontalScrollIndicator
+            oldStates["showsVerticalScrollIndicator"] = scrollView.showsVerticalScrollIndicator
+            
+            scrollView.showsHorizontalScrollIndicator = false
+            scrollView.showsVerticalScrollIndicator = false
+        }
+        
+        viewDto.views = convertUIViewsToViews(views: view.subviews)
+        
+        // Restore state
+        if let scrollView = view as? UIScrollView {
+            scrollView.showsHorizontalScrollIndicator = oldStates["showsHorizontalScrollIndicator"] as! Bool
+            scrollView.showsVerticalScrollIndicator = oldStates["showsVerticalScrollIndicator"] as! Bool
+        }
+        
+        return viewDto
     }
     
     private func convertUIViewsToViews(views: [UIView]) -> [UpsertScreenRequest.View] {
@@ -129,16 +167,7 @@ public class Pixelworm {
             
             // TODO: Handle optionals, don't just force-unwrap them
             
-            var viewDto = UpsertScreenRequest.View(
-                uniqueId: view.identifier,
-                // TODO: Get actual view name
-                name: view.className,
-                contentMode: getConvertedContentMode(view.contentMode)!,
-                frame: view.asRectangle(),
-                zIndex: view.superview!.subviews.firstIndex(of: view)!,
-                base64Image: view.asImage().convertImageToBase64(),
-                views: convertUIViewsToViews(views: view.subviews)
-            )
+            var viewDto = createViewDto(fromView: view)
             
             switch view {
             case let button as UIButton:

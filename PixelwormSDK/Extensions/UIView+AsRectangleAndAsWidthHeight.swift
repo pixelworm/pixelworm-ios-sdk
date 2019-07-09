@@ -1,5 +1,5 @@
 //
-//  UIView+AsRectangleAndWidthHeight.swift
+//  UIView+AsRectangleAndAsWidthHeight.swift
 //  PixelwormSDK
 //
 //  Created by Doğu Emre DEMİRÇİVİ on 22.05.2019.

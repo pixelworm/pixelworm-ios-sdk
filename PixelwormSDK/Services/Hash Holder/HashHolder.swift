@@ -11,6 +11,14 @@ import Foundation
 internal class HashHolder {
     private static var lastData: Data?
     
+    /**
+     * Private constructor.
+     * We don't want anyone to an create instance of `HashHolder`.
+     */
+    private init() {
+        
+    }
+    
     public static func isDifferent<T: Encodable>(value: T) -> Bool {
         let data = try! JSONEncoder().encode(value)
         
