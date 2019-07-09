@@ -61,7 +61,12 @@ internal class RESTClient {
             request.httpBody = try! JSONEncoder().encode(bodyUnwrapped)
         }
         
-        // Put version info to request header
+        // Put SDK type and version info to request header
+        request.setValue(
+            "ios-sdk",
+            forHTTPHeaderField: "X-Requester-Type"
+        )
+        
         request.setValue(
             BundleManager.applicationVersion,
             forHTTPHeaderField: "X-Requester-Version"
