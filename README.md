@@ -91,5 +91,4 @@ Please make sure you've read this document before contributing:
 
 ## License
 
-[MIT](License)
-
+[MIT](LICENSE)

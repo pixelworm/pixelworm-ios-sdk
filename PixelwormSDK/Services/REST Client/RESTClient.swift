@@ -104,6 +104,6 @@ internal class RESTClient {
     }
     
     public func upsertScreen(_ request: UpsertScreenRequest, completionHandler: @escaping (Result<UpsertScreenResponse, Error>) -> ()) {
-        doRequest("/sdk/applications/screens/upsert", method: .put, body: request, completionHandler: completionHandler)
+        doRequest("/sdk/upsert/screen", method: .put, body: request, completionHandler: completionHandler)
     }
 }

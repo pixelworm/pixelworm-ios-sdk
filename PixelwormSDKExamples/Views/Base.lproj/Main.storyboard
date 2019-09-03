@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina3_5" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,34 +15,34 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="PixelwormSDKExamples" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFo-cm-6cT">
-                                <rect key="frame" x="16" y="180" width="288" height="140"/>
+                                <rect key="frame" x="16" y="308" width="382" height="140"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugd-iK-c4z">
-                                        <rect key="frame" x="126.5" y="54" width="35" height="30"/>
+                                        <rect key="frame" x="173.66666666666666" y="54" width="35" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="1VE-Vs-qgJ"/>
                                         </constraints>
                                         <state key="normal" title="Hello">
-                                            <color key="titleColor" red="0.99888592958450317" green="0.5733262300491333" blue="0.18282905220985413" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="1" green="0.5725490196078431" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="helloButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yZf-l1-rFb"/>
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pixelworm" translatesAutoresizingMaskIntoConstraints="NO" id="PIl-89-yNr">
-                                        <rect key="frame" x="0.0" y="0.0" width="288" height="54"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="sKv-JY-Dv9"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please make sure you've replaced keys with your application's keys in AppDelegate.swift file." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QrK-K8-rOe">
-                                        <rect key="frame" x="0.0" y="84" width="288" height="56"/>
+                                        <rect key="frame" x="0.0" y="84" width="382" height="56"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
-                                        <color key="textColor" red="0.1811155378818512" green="0.38155734539031982" blue="0.90452778339385986" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.1803921568627451" green="0.38039215686274508" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

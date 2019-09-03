@@ -11,10 +11,8 @@ import Foundation
 internal struct Rectangle: Encodable {
     // MARK: - Fields
     
-    public var relativeX: Int
-    public var relativeY: Int
-    public var absoluteX: Int
-    public var absoluteY: Int
+    public var x: Int
+    public var y: Int
     public var width: Int
     public var height: Int
 }

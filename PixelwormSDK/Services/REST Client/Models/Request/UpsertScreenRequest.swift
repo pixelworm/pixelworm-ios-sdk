@@ -13,8 +13,9 @@ internal struct UpsertScreenRequest: Encodable {
     
     public var uniqueId: String
     public var name: String
+    public var size: WidthHeight
     public var base64Image: String
-    public var view: View
+    public var views: [View]
     public var constraints: [Constraint]
     
     // MARK: - Inner Structs
@@ -28,14 +29,9 @@ internal struct UpsertScreenRequest: Encodable {
         public var contentMode: ContentMode
         public var frame: Rectangle
         public var zIndex: Int
-        public var base64Image: String
-        public var views: [View]
-        public var group: Group?
-        public var button: Button?
+        public var base64Image: String?
         public var label: Label?
         public var image: Image?
-        public var tableView: TableView?
-        public var tableViewCell: TableViewCell?
         
         // MARK: - Constructors
         
@@ -44,28 +40,20 @@ internal struct UpsertScreenRequest: Encodable {
             name: String,
             contentMode: ContentMode,
             frame: Rectangle,
-            zIndex: Int,
-            base64Image: String,
-            views: [View]
-            ) {
+            zIndex: Int
+        ) {
             self.uniqueId = uniqueId
             self.name = name
             self.contentMode = contentMode
             self.frame = frame
             self.zIndex = zIndex
-            self.base64Image = base64Image
-            self.views = views
         }
         
         // MARK: - Inner Types
         
         internal enum ViewType: String, Encodable {
-            case group = "GROUP"
-            case button = "BUTTON"
             case label = "LABEL"
             case image = "IMAGE"
-            case tableView = "TABLE_VIEW"
-            case tableViewCell = "TABLE_VIEW_CELL"
         }
         
         internal enum ContentMode: String, Encodable {
@@ -82,16 +70,6 @@ internal struct UpsertScreenRequest: Encodable {
             case topRight = "TOP_RIGHT"
             case bottomLeft = "BOTTOM_LEFT"
             case bottomRight = "BOTTOM_RIGHT"
-        }
-        
-        internal struct Group: Encodable {
-            // MARK: - Fields
-            
-        }
-        
-        internal struct Button: Encodable {
-            // MARK: - Fields
-            
         }
         
         internal struct Label: Encodable {
@@ -142,17 +120,6 @@ internal struct UpsertScreenRequest: Encodable {
             
             public var isPresent: Bool
             public var base64Image: String?
-        }
-        
-        internal struct TableView: Encodable {
-            // MARK: - Fields
-            
-        }
-        
-        internal struct TableViewCell: Encodable {
-            // MARK: - Fields
-            
-            public var reuseIdentifier: String
         }
     }
     
