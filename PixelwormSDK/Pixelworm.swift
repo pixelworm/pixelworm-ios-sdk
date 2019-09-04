@@ -123,7 +123,7 @@ public class Pixelworm {
     }
     
     private func convertUIViewsToFlatViewDTOs(_ uiViews: [UIView]) -> [UpsertScreenRequest.View] {
-        var createdViews = [UpsertScreenRequest.View]()
+        var createdViews: [UpsertScreenRequest.View] = []
         
         for uiView in uiViews {
             if !isViewUpsertable(uiView) { continue }
@@ -256,12 +256,27 @@ public class Pixelworm {
                 break
             }
             
-            guard let nextPossibleConstraint = (targetView.constraints.filter {
+            guard var nextPossibleConstraint = (targetView.constraints.filter {
                 $0.firstAttribute == constraint.firstAttribute &&
                     $0.secondAttribute == constraint.secondAttribute &&
+                    // TODO: Still not sure about this, can a view contain constraints which don't belong to it?
+                    ($0.firstView == targetView || $0.secondView == targetView) &&
                     checkIfConstraintIsValid($0)
             }.first) else {
                 return nil
+            }
+            
+            // If owner is not target view, invert the constraint
+            if nextPossibleConstraint.firstView != targetView {
+                nextPossibleConstraint = NSLayoutConstraint(
+                    item: nextPossibleConstraint.firstItem!,
+                    attribute: nextPossibleConstraint.firstAttribute,
+                    relatedBy: nextPossibleConstraint.relation,
+                    toItem: nextPossibleConstraint.secondItem,
+                    attribute: nextPossibleConstraint.secondAttribute,
+                    multiplier: nextPossibleConstraint.multiplier,
+                    constant: -nextPossibleConstraint.constant
+                )
             }
             
             constraints.append(nextPossibleConstraint)
@@ -327,7 +342,7 @@ public class Pixelworm {
     }
     
     private func getConstraints(ofViews views: [UIView], andViewDTOs viewDTOs: [UpsertScreenRequest.View]) -> [UpsertScreenRequest.Constraint] {
-        var constraintDTOs = [UpsertScreenRequest.Constraint]()
+        var constraintDTOs: [UpsertScreenRequest.Constraint] = []
         
         for view in views {
             constraintDTOs.append(contentsOf: getConstraints(ofViews: view.subviews, andViewDTOs: viewDTOs))
