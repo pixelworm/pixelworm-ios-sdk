@@ -43,6 +43,7 @@
 		C3D762C62295A024000E95CF /* WidthHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D762C52295A024000E95CF /* WidthHeight.swift */; };
 		C3D762C92295A050000E95CF /* UpsertScreenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D762C82295A050000E95CF /* UpsertScreenResponse.swift */; };
 		C3E5A39B22CA3D89002D3092 /* BundleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E5A39A22CA3D89002D3092 /* BundleManager.swift */; };
+		C3EC3D44231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EC3D43231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		C3D762C52295A024000E95CF /* WidthHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthHeight.swift; sourceTree = "<group>"; };
 		C3D762C82295A050000E95CF /* UpsertScreenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpsertScreenResponse.swift; sourceTree = "<group>"; };
 		C3E5A39A22CA3D89002D3092 /* BundleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleManager.swift; sourceTree = "<group>"; };
+		C3EC3D43231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+ActualViews.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -361,6 +363,7 @@
 				C3AFDBDD2295C4D400B9CCD6 /* String+RegexMatch.swift */,
 				C3AFDBE22295C57700B9CCD6 /* String+IsValidMD5.swift */,
 				C3AFDBEC2295C89300B9CCD6 /* NSObject+ClassName.swift */,
+				C3EC3D43231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 			files = (
 				C3AFDBE12295C54500B9CCD6 /* PixelwormError.swift in Sources */,
 				C3D762C122959FE7000E95CF /* UpsertScreenRequest.swift in Sources */,
+				C3EC3D44231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift in Sources */,
 				C3D762B22295952B000E95CF /* RESTClient.swift in Sources */,
 				C3D762C62295A024000E95CF /* WidthHeight.swift in Sources */,
 				C3D762BC22959C11000E95CF /* URLSession+Result.swift in Sources */,

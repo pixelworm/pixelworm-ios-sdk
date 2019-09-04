@@ -101,7 +101,7 @@ public class Pixelworm {
         
         // Update hash value
         HashHolder.setLast(value: request)
-        
+ 
         RESTClient.shared.upsertScreen(request) { result in
             switch(result) {
             case .success(let response):
@@ -250,9 +250,7 @@ public class Pixelworm {
         while true {
             let lastConstraint = constraints.last!
             
-            guard let targetView = lastConstraint.secondItem as? UIView else {
-                return nil
-            }
+            let targetView = lastConstraint.secondView!
             
             if (viewDTOs.contains { $0.uniqueId == targetView.identifier }) {
                 break
@@ -269,15 +267,16 @@ public class Pixelworm {
             constraints.append(nextPossibleConstraint)
         }
         
-        // Create sum of all constraints
-        let constant = constraints.map { $0.constant }.reduce(0, +)
         let lastConstraint = constraints.last!
         
+        // Create sum of all constraints
+        let constant = constraints.map { $0.constant }.reduce(0, +)
+        
         return NSLayoutConstraint(
-            item: constraint.firstItem!,
+            item: constraint.firstView!,
             attribute: constraint.firstAttribute,
             relatedBy: constraint.relation,
-            toItem: lastConstraint.secondItem,
+            toItem: lastConstraint.secondView,
             attribute: constraint.secondAttribute,
             multiplier: constraint.multiplier,
             constant: constant
@@ -285,11 +284,15 @@ public class Pixelworm {
     }
     
     private func checkIfConstraintIsValid(_ constraint: NSLayoutConstraint) -> Bool {
-        if constraint.firstItem == nil || !constraint.firstItem!.isKind(of: UIView.self) {
+        guard let firstView = constraint.firstView else {
             return false
         }
         
-        if constraint.secondItem == nil || !constraint.secondItem!.isKind(of: UIView.self) {
+        guard let secondView = constraint.secondView else {
+            return false
+        }
+        
+        if secondView == firstView {
             return false
         }
         
@@ -314,9 +317,6 @@ public class Pixelworm {
             return false
         }
         
-        let firstView = constraint.firstItem as! UIView
-        let secondView = constraint.secondItem as! UIView
-        
         // Continue when any of two views is not upsertable
         if !isViewUpsertable(firstView)
             || !isViewUpsertable(secondView) {
@@ -337,8 +337,8 @@ public class Pixelworm {
                     continue
                 }
                 
-                let firstView = resolvedConstraint.firstItem as! UIView
-                let secondView = resolvedConstraint.secondItem as! UIView
+                let firstView = resolvedConstraint.firstView!
+                let secondView = resolvedConstraint.secondView!
                 
                 let constraintDTO = UpsertScreenRequest.Constraint(
                     viewUniqueId: firstView.identifier,
