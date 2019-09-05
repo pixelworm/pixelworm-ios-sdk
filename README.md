@@ -11,9 +11,8 @@
 - [License](#license)
 
 ## Purpose of this SDK
-Pixelworm SDK exports your excellent views into `Pixelworm`’s database.
-After exporting your views and your design files to `Pixelworm` you can enjoy suggestions
-about how to improve your designs.
+Pixelworm SDK uploads your excellent views into `Pixelworm`’s system.
+After uploading your views and your design files to `Pixelworm` you can see suggestions on how to improve your designs.
 
 ## Installation
 
@@ -25,16 +24,16 @@ To integrate `Pixelworm iOS SDK` into your project you must add following line t
 pod 'PixelwormSDK'
 ```
 
-⚠️ Important: Don’t forget to execute `bash` script below after adding pod lines:
+⚠️ Important: Don’t forget to execute the `bash` script below after adding pod lines:
 
 ```bash
 pod install
 ```
 
 ## Usage
-After integrating SDK into your project navigate to your `AppDelegate.swift` file.
+After integrating the SDK into your project navigate to your `AppDelegate.swift` file.
 - Add `import PixelwormSDK` to the beginning of the file.
-- In `application(_:didFinishLaunchingWithOptions:)` function, add lines below.
+- In `application(_:didFinishLaunchingWithOptions:)` function, add the lines below.
 Make sure you replace `YOUR_API_KEY` and `YOUR_SECRET_KEY` with your application’s
 keys.
 
@@ -59,7 +58,7 @@ do {
 #endif
 ```
 
-- In `applicationWillTerminate(_:)` add lines below.
+- In `applicationWillTerminate(_:)` add the lines below.
 
 ```swift
 #if DEBUG
@@ -80,7 +79,7 @@ do {
 ```
 
 - You're good to go. Just launch your application and look for `PixelwormSDK`'s output in
-your *debug console*. Once you saw the success message go check `Pixelworm`'s
+your *debug console*. Once you see the success message go check `Pixelworm`'s
 Screens page!
 
 ## Contributing
