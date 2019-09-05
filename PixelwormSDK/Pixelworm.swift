@@ -256,27 +256,13 @@ public class Pixelworm {
                 break
             }
             
-            guard var nextPossibleConstraint = (targetView.constraints.filter {
+            guard let nextPossibleConstraint = (targetView.constraints.filter {
                 $0.firstAttribute == constraint.firstAttribute &&
                     $0.secondAttribute == constraint.secondAttribute &&
-                    // TODO: Still not sure about this, can a view contain constraints which don't belong to it?
-                    ($0.firstView == targetView || $0.secondView == targetView) &&
+                    $0.firstView == targetView &&
                     checkIfConstraintIsValid($0)
             }.first) else {
                 return nil
-            }
-            
-            // If owner is not target view, invert the constraint
-            if nextPossibleConstraint.firstView != targetView {
-                nextPossibleConstraint = NSLayoutConstraint(
-                    item: nextPossibleConstraint.firstItem!,
-                    attribute: nextPossibleConstraint.firstAttribute,
-                    relatedBy: nextPossibleConstraint.relation,
-                    toItem: nextPossibleConstraint.secondItem,
-                    attribute: nextPossibleConstraint.secondAttribute,
-                    multiplier: nextPossibleConstraint.multiplier,
-                    constant: -nextPossibleConstraint.constant
-                )
             }
             
             constraints.append(nextPossibleConstraint)
