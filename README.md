@@ -11,7 +11,7 @@
 - [License](#license)
 
 ## Purpose of this SDK
-Pixelworm SDK uploads your excellent views into `Pixelworm`’s system.
+Pixelworm SDK uploads your views into `Pixelworm`’s system.
 After uploading your views and your design files to `Pixelworm` you can see suggestions on how to improve your designs.
 
 ## Installation
