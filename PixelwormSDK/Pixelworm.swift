@@ -154,7 +154,7 @@ public class Pixelworm {
             name: uiView.className,
             contentMode: getConvertedContentMode(uiView.contentMode)!,
             frame: uiView.asRectangle(),
-            zIndex: uiView.superview!.subviews.firstIndex(of: uiView)!
+            zIndex: uiView.superview?.subviews.firstIndex(of: uiView) ?? 0
         )
         
         if let uiImageView = uiView as? UIImageView {
