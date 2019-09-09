@@ -19,7 +19,7 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         
         do {
-            try Pixelworm.attach(withApiKey: "67f7ea3f334d46cf8b4d62778636fafb", andSecretKey: "339ce7a9bb5d48e9b58d63ea6a68742d")
+            try Pixelworm.attach(withApiKey: "YOUR_API_KEY", andSecretKey: "YOUR_SECRET_KEY")
         } catch let error {
             /*
              * TODO:
