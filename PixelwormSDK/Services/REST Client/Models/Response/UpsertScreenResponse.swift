@@ -11,6 +11,7 @@ import Foundation
 internal struct UpsertScreenResponse: Decodable {
     // MARK: - Fields
     public let type: ResponseType
+    public let expectedWidth: Int!
     
     // MARK: - Inner Types
     public enum ResponseType: String, Decodable {

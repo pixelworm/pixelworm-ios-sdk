@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C302B4462326452F005DEEDF /* PixelatedLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302B4452326452F005DEEDF /* PixelatedLog.swift */; };
+		C302B44823264F1C005DEEDF /* Comparable+Clamped.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302B44723264F1C005DEEDF /* Comparable+Clamped.swift */; };
 		C34235FD22953C6200265A0E /* PixelwormSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34235F322953C6200265A0E /* PixelwormSDK.framework */; };
 		C342360222953C6200265A0E /* PixelwormSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C342360122953C6200265A0E /* PixelwormSDKTests.swift */; };
 		C342360422953C6200265A0E /* PixelwormSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C34235F622953C6200265A0E /* PixelwormSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,6 +34,8 @@
 		C3AFDBED2295C89300B9CCD6 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBEC2295C89300B9CCD6 /* NSObject+ClassName.swift */; };
 		C3AFDBEF2295D75600B9CCD6 /* PixelwormSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDBEE2295D75600B9CCD6 /* PixelwormSDK.podspec */; };
 		C3AFDBF12295D8E600B9CCD6 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDBF02295D8E600B9CCD6 /* LICENSE */; };
+		C3B8773F232656CA004EFFB7 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B8773E232656CA004EFFB7 /* DeviceType.swift */; };
+		C3B87742232656EC004EFFB7 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B87741232656EC004EFFB7 /* Device.swift */; };
 		C3CE4B76229593D600099576 /* Pixelworm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CE4B75229593D600099576 /* Pixelworm.swift */; };
 		C3D762B22295952B000E95CF /* RESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D762B12295952B000E95CF /* RESTClient.swift */; };
 		C3D762B42295967D000E95CF /* PixelwormSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34235F322953C6200265A0E /* PixelwormSDK.framework */; };
@@ -78,6 +82,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C302B4452326452F005DEEDF /* PixelatedLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelatedLog.swift; sourceTree = "<group>"; };
+		C302B44723264F1C005DEEDF /* Comparable+Clamped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Comparable+Clamped.swift"; path = "../Comparable+Clamped.swift"; sourceTree = "<group>"; };
 		C34235F322953C6200265A0E /* PixelwormSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PixelwormSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34235F622953C6200265A0E /* PixelwormSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixelwormSDK.h; sourceTree = "<group>"; };
 		C34235F722953C6200265A0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,6 +114,8 @@
 		C3AFDBEC2295C89300B9CCD6 /* NSObject+ClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassName.swift"; sourceTree = "<group>"; };
 		C3AFDBEE2295D75600B9CCD6 /* PixelwormSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PixelwormSDK.podspec; sourceTree = "<group>"; };
 		C3AFDBF02295D8E600B9CCD6 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		C3B8773E232656CA004EFFB7 /* DeviceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
+		C3B87741232656EC004EFFB7 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		C3CE4B75229593D600099576 /* Pixelworm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixelworm.swift; sourceTree = "<group>"; };
 		C3D762B12295952B000E95CF /* RESTClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RESTClient.swift; path = "../Rest Client/RESTClient.swift"; sourceTree = "<group>"; };
 		C3D762BB22959C11000E95CF /* URLSession+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Result.swift"; sourceTree = "<group>"; };
@@ -147,6 +155,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C302B449232656A1005DEEDF /* Device Type */ = {
+			isa = PBXGroup;
+			children = (
+				C3B87740232656E0004EFFB7 /* Models */,
+				C3B8773E232656CA004EFFB7 /* DeviceType.swift */,
+			);
+			path = "Device Type";
+			sourceTree = "<group>";
+		};
 		C34235E922953C6200265A0E = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +194,7 @@
 				C3D762AF2295950D000E95CF /* Services */,
 				C3CE4B78229594AB00099576 /* Models */,
 				C3CE4B75229593D600099576 /* Pixelworm.swift */,
+				C302B4452326452F005DEEDF /* PixelatedLog.swift */,
 			);
 			path = PixelwormSDK;
 			sourceTree = "<group>";
@@ -264,6 +282,14 @@
 			path = "Type Counter";
 			sourceTree = "<group>";
 		};
+		C3B87740232656E0004EFFB7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C3B87741232656EC004EFFB7 /* Device.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C3BA23EB22CA3D0B00DE3219 /* Bundle Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +362,7 @@
 		C3D762AF2295950D000E95CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C302B449232656A1005DEEDF /* Device Type */,
 				C3BA23EB22CA3D0B00DE3219 /* Bundle Manager */,
 				C3AFDBE92295C86E00B9CCD6 /* Type Counter */,
 				C3AFDBE42295C5D300B9CCD6 /* Hash Holder */,
@@ -354,6 +381,7 @@
 		C3D762BA22959C04000E95CF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C302B44723264F1C005DEEDF /* Comparable+Clamped.swift */,
 				C3D762BB22959C11000E95CF /* URLSession+Result.swift */,
 				C3AFDBD32295C33F00B9CCD6 /* UIApplication+RootAndGetTopMostViewController.swift */,
 				C3AFDBD52295C42100B9CCD6 /* UIImage+Base64.swift */,
@@ -543,6 +571,7 @@
 			files = (
 				C3AFDBE12295C54500B9CCD6 /* PixelwormError.swift in Sources */,
 				C3D762C122959FE7000E95CF /* UpsertScreenRequest.swift in Sources */,
+				C302B44823264F1C005DEEDF /* Comparable+Clamped.swift in Sources */,
 				C3EC3D44231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift in Sources */,
 				C3D762B22295952B000E95CF /* RESTClient.swift in Sources */,
 				C3D762C62295A024000E95CF /* WidthHeight.swift in Sources */,
@@ -550,9 +579,12 @@
 				C3AFDBE62295C5DF00B9CCD6 /* HashHolder.swift in Sources */,
 				C3D762C422959FF7000E95CF /* Rectangle.swift in Sources */,
 				C3AFDBC82295BFA600B9CCD6 /* HTTPMethod.swift in Sources */,
+				C302B4462326452F005DEEDF /* PixelatedLog.swift in Sources */,
 				C3AFDBDA2295C46F00B9CCD6 /* UIView+AsRectangleAndAsWidthHeight.swift in Sources */,
 				C3AFDBDC2295C49600B9CCD6 /* UIColor+AsRGBA.swift in Sources */,
+				C3B87742232656EC004EFFB7 /* Device.swift in Sources */,
 				C3AFDBEB2295C87800B9CCD6 /* TypeCounter.swift in Sources */,
+				C3B8773F232656CA004EFFB7 /* DeviceType.swift in Sources */,
 				C3CE4B76229593D600099576 /* Pixelworm.swift in Sources */,
 				C3AFDBED2295C89300B9CCD6 /* NSObject+ClassName.swift in Sources */,
 				C3D762BF22959D47000E95CF /* RESTClientError.swift in Sources */,

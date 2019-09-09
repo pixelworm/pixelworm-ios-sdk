@@ -107,17 +107,21 @@ public class Pixelworm {
             case .success(let response):
                 switch(response.type) {
                 case .enqueued:
-                    print("Successfully enqueued \(request.name)! Please re-map your screen in Pixelworm Application in order to see newly exported screen.")
+                    pprint(.notify, "Successfully enqueued \(request.name)! Please re-map your screen in Pixelworm Application in order to see newly exported screen.")
                     
                 case .processedDirectly:
-                    print("Successfully exported \(request.name)! Please check Screens page in Pixelworm Application in order to see newly exported screen.")
+                    pprint(.notify, "Successfully exported \(request.name)! Please check Screens page in Pixelworm Application in order to see newly exported screen.")
                     
                 case .widthMismatch:
-                    print("Failed to export \(request.name). Please make sure your simulator's screen width equals to Pixelworm Application's width setting.")
+                    let devices = DeviceType.getDevices(forWidth: response.expectedWidth, isLandscape: false /* TODO: Support this */, 2)
+                    
+                    let deviceNames = devices.map { $0.name }.joined(separator: " and ")
+                    
+                    pprint(.warning, "Failed to export \(request.name). Your application doesn't support the width of your currently working device. Please consider using \(deviceNames).")
                 }
                 
             case .failure(let error):
-                print("Failed to upload screen information to Pixelworm servers, error: \(error)")
+                pprint(.fatal, "Failed to upload screen information to Pixelworm servers, error: \(error)")
             }
         }
     }
