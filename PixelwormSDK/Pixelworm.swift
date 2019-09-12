@@ -172,7 +172,7 @@ public class Pixelworm {
         } else if let imageBase64 = getImageBase64IfImportant(fromUIView: uiView) {
             view.type = .image
             view.base64Image = imageBase64
-            view.image = UpsertScreenRequest.View.Image(isPresent: false, base64Image: nil)
+            view.image = UpsertScreenRequest.View.Image(isPresent: false, size: nil)
         } else {
             return nil
         }
@@ -181,9 +181,13 @@ public class Pixelworm {
     }
     
     private func getImage(fromUIImageView uiImageView: UIImageView) -> UpsertScreenRequest.View.Image {
+        guard let image = uiImageView.image else {
+            return UpsertScreenRequest.View.Image(isPresent: false, size: nil)
+        }
+        
         return UpsertScreenRequest.View.Image(
-            isPresent: uiImageView.image != nil,
-            base64Image: uiImageView.image?.convertImageToBase64()
+            isPresent: true,
+            size: WidthHeight(width: Int(image.size.width), height: Int(image.size.height))
         )
     }
     

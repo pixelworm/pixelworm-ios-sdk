@@ -119,7 +119,7 @@ internal struct UpsertScreenRequest: Encodable {
             // MARK: - Fields
             
             public var isPresent: Bool
-            public var base64Image: String?
+            public var size: WidthHeight?
         }
     }
     

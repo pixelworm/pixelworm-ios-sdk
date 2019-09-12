@@ -9,6 +9,7 @@
 import Foundation
 
 internal enum RESTClientError: Error {
+    case unexpectedStatusCode(statusCode: Int, message: String?)
     case invalidCredentials
     case deserializationFailure(error: Error)
     case general(error: Error)

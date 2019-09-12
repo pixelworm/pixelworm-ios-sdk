@@ -82,6 +82,14 @@ internal class RESTClient {
                     return
                 }
                 
+                if response.statusCode != 200 {
+                    let message = String(data: data, encoding: .utf8)
+                    
+                    completionHandler(.failure(RESTClientError.unexpectedStatusCode(statusCode: response.statusCode, message: message)))
+                    
+                    return
+                }
+                
                 var deserializedResponse: ResponseType!
                 
                 // Try to deserialize response

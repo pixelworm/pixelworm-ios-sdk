@@ -28,7 +28,7 @@ internal enum LogType {
 }
 
 internal func pprint(_ logType: LogType, _ content: String) {
-    var log = "PX:: \(content)"
+    var log = "Pixelworm:: \(content)"
     
     if let icon = logType.icon {
         log = "[\(icon)] \(log)"
