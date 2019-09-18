@@ -121,7 +121,7 @@ public class Pixelworm {
                 }
                 
             case .failure(let error):
-                pprint(.fatal, "Failed to upload screen information to Pixelworm servers, error: \(error)")
+                pprint(.fatal, "Failed to upload screen information to Pixelworm servers, error: \(error).")
             }
         }
     }
