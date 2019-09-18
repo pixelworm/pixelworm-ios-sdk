@@ -163,15 +163,12 @@ public class Pixelworm {
         
         if let uiImageView = uiView as? UIImageView {
             view.type = .image
-            view.base64Image = uiView.asImage().convertImageToBase64()
             view.image = getImage(fromUIImageView: uiImageView)
         } else if let uiLabel = uiView as? UILabel {
             view.type = .label
-            view.base64Image = uiView.asImage().convertImageToBase64()
             view.label = getLabel(fromUILabel: uiLabel)
-        } else if let imageBase64 = getImageBase64IfImportant(fromUIView: uiView) {
+        } else if shouldExportViewAsImage(uiView) {
             view.type = .image
-            view.base64Image = imageBase64
             view.image = UpsertScreenRequest.View.Image(isPresent: false, size: nil)
         } else {
             return nil
@@ -212,9 +209,9 @@ public class Pixelworm {
         return label
     }
     
-    private func getImageBase64IfImportant(fromUIView uiView: UIView) -> String? {
+    private func shouldExportViewAsImage(_ uiView: UIView) -> Bool {
         if uiView.isKind(of: UISwitch.self) {
-            return uiView.asImage().convertImageToBase64()
+            return true
         }
         
         if (uiView.backgroundColor == nil ||
@@ -222,10 +219,10 @@ public class Pixelworm {
             uiView.backgroundColor == uiView.superview?.backgroundColor) &&
             uiView.layer.shadowRadius == 0 &&
             uiView.layer.borderWidth == 0 {
-            return nil
+            return false
         }
         
-        return uiView.asImage(withoutSubviews: true).convertImageToBase64()
+        return true
     }
     
     private func getConvertedContentMode(_ contentMode: UIView.ContentMode) -> UpsertScreenRequest.View.ContentMode? {

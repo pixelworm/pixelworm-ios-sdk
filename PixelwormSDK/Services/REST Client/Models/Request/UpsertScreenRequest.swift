@@ -29,7 +29,6 @@ internal struct UpsertScreenRequest: Encodable {
         public var contentMode: ContentMode
         public var frame: Rectangle
         public var zIndex: Int
-        public var base64Image: String?
         public var label: Label?
         public var image: Image?
         
