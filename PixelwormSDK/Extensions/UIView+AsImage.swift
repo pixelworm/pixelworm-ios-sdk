@@ -9,26 +9,7 @@
 import Foundation
 
 internal extension UIView {
-    func asImage(withoutSubviews: Bool = false) -> UIImage {
-        // TODO: Find a way to get image of view without its subviews
-        var isHiddenMap = [UIView: Bool]()
-        
-        if withoutSubviews {
-            for view in self.subviews {
-                isHiddenMap[view] = view.isHidden
-                
-                view.isHidden = true
-            }
-        }
-        
-        defer {
-            if withoutSubviews {
-                for keyValuePair in isHiddenMap {
-                    keyValuePair.key.isHidden = keyValuePair.value
-                }
-            }
-        }
-        
+    func asImage() -> UIImage {
         // Create image context by image's frame size
         UIGraphicsBeginImageContext(self.frame.size)
         
