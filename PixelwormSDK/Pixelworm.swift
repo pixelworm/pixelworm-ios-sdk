@@ -73,7 +73,7 @@ public class Pixelworm {
     }
 
     private func upsertScreenIfChanged() {
-        let activeViewController = UIApplication.rootViewController!
+        let activeViewController = UIApplication.visibleViewController!
         
         let topMostViewControllerName = UIApplication.getTopMostViewController()?.className ?? "FailedToGetViewControllerName"
         
@@ -217,7 +217,7 @@ public class Pixelworm {
         if (uiView.backgroundColor == nil ||
             uiView.backgroundColor == .clear ||
             uiView.backgroundColor == uiView.superview?.backgroundColor) &&
-            uiView.layer.shadowRadius == 0 &&
+            (uiView.layer.shadowRadius == 0 || uiView.layer.shadowOpacity == 0) &&
             uiView.layer.borderWidth == 0 {
             return false
         }
@@ -247,6 +247,10 @@ public class Pixelworm {
     
     private func resolveConstraint(_ constraint: NSLayoutConstraint, viewDTOs: [UpsertScreenRequest.View]) -> NSLayoutConstraint? {
         if !checkIfConstraintIsValid(constraint) {
+            return nil
+        }
+        
+        if !(viewDTOs.contains { $0.uniqueId == constraint.firstView!.identifier }) {
             return nil
         }
         

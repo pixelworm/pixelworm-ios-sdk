@@ -13,6 +13,18 @@ internal extension UIApplication {
         return UIApplication.shared.keyWindow?.rootViewController
     }
     
+    class var visibleViewController: UIViewController? {
+        guard var viewController = rootViewController else {
+            return nil
+        }
+        
+        while let presentedViewController = viewController.presentedViewController {
+            viewController = presentedViewController
+        }
+        
+        return viewController
+    }
+    
     class func getTopMostViewController(
         parent: UIViewController? = rootViewController
     ) -> UIViewController? {
