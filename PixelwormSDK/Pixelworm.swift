@@ -113,9 +113,7 @@ public class Pixelworm {
                     pprint(.notify, "Successfully exported \(request.name)! Please check Screens page in Pixelworm Application in order to see newly exported screen.")
                     
                 case .widthMismatch:
-                    let devices = DeviceType.getDevices(forWidth: response.expectedWidth, isLandscape: false /* TODO: Support this */, 2)
-                    
-                    let deviceNames = devices.map { $0.name }.joined(separator: " and ")
+                    let deviceNames = response.supportedDeviceNames!.joined(separator: ", ")
                     
                     pprint(.warning, "Failed to export \(request.name). Your application doesn't support the width of your currently working device. Please consider using \(deviceNames).")
                 }
@@ -191,8 +189,16 @@ public class Pixelworm {
     private func getLabel(fromUILabel uiLabel: UILabel) -> UpsertScreenRequest.View.Label {
         let rgbaColor = uiLabel.textColor.asRGBA() ?? (0, 0, 0, 0)
         
+        // Get family name
+        var familyName = uiLabel.font.familyName
+        
+        // Remove first dot if present
+        if familyName.starts(with: ".") {
+            familyName = String(familyName.dropFirst())
+        }
+        
         let font = UpsertScreenRequest.View.Label.Font(
-            family: uiLabel.font.familyName,
+            family: familyName,
             size: Int(uiLabel.font.pointSize),
             color: UpsertScreenRequest.View.Label.Font.Color.init(red: rgbaColor.red, green: rgbaColor.green, blue: rgbaColor.blue, alpha: rgbaColor.alpha),
             isBold: (uiLabel.font.fontDescriptor.symbolicTraits.rawValue & UIFontDescriptor.SymbolicTraits.traitBold.rawValue) != 0,
