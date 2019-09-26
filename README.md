@@ -21,7 +21,7 @@ To integrate `Pixelworm iOS SDK` into your project you must add following line t
 `Podfile`.
 
 ```ruby
-pod 'PixelwormSDK', '~> 1.0.11'
+pod 'PixelwormSDK', '~> 1.0.12'
 ```
 
 ⚠️ Important: Don’t forget to execute the `bash` script below after adding pod lines:
@@ -38,44 +38,13 @@ Make sure you replace `YOUR_API_KEY` and `YOUR_SECRET_KEY` with your application
 keys.
 
 ```swift
-#if DEBUG
-
-do {
-  try Pixelworm.attach(
-      withApiKey: "YOUR_API_KEY",
-      andSecretKey: "YOUR_SECRET_KEY"
-  )
-} catch let error {
-  /*
-   * TODO:
-   * Handle errors as you wish.
-   * Errors will be type of `PixelwormError`.
-   */
-   
-   print("An error occurred while attaching Pixelworm, error: \(error)")
-}
-
-#endif
+Pixelworm.attach(withApiKey: "YOUR_API_KEY", andSecretKey: "YOUR_SECRET_KEY")
 ```
 
 - In `applicationWillTerminate(_:)` add the lines below.
 
 ```swift
-#if DEBUG
-
-do {
-  try Pixelworm.detach()
-} catch let error {
-  /*
-   * TODO:
-   * Handle errors as you wish.
-   * Errors will be type of `PixelwormError`.
-   */
-   
-   print("An error occurred while detaching Pixelworm, error: \(error)")
-}
-
-#endif
+Pixelworm.detach()
 ```
 
 - You're good to go. Just launch your application and look for `PixelwormSDK`'s output in

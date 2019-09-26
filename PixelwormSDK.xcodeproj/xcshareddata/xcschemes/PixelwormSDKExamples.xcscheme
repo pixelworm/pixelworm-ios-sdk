@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C34235F222953C6200265A0E"
+               BuildableName = "PixelwormSDK.framework"
+               BlueprintName = "PixelwormSDK"
+               ReferencedContainer = "container:PixelwormSDK.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C342361022953CDB00265A0E"
                BuildableName = "PixelwormSDKExamples.app"
                BlueprintName = "PixelwormSDKExamples"

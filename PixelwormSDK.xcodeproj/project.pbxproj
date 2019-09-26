@@ -27,7 +27,6 @@
 		C3AFDBDA2295C46F00B9CCD6 /* UIView+AsRectangleAndAsWidthHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBD92295C46F00B9CCD6 /* UIView+AsRectangleAndAsWidthHeight.swift */; };
 		C3AFDBDC2295C49600B9CCD6 /* UIColor+AsRGBA.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBDB2295C49600B9CCD6 /* UIColor+AsRGBA.swift */; };
 		C3AFDBDE2295C4D400B9CCD6 /* String+RegexMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBDD2295C4D400B9CCD6 /* String+RegexMatch.swift */; };
-		C3AFDBE12295C54500B9CCD6 /* PixelwormError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBE02295C54500B9CCD6 /* PixelwormError.swift */; };
 		C3AFDBE32295C57700B9CCD6 /* String+IsValidMD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBE22295C57700B9CCD6 /* String+IsValidMD5.swift */; };
 		C3AFDBE62295C5DF00B9CCD6 /* HashHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBE52295C5DF00B9CCD6 /* HashHolder.swift */; };
 		C3AFDBEB2295C87800B9CCD6 /* TypeCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBEA2295C87800B9CCD6 /* TypeCounter.swift */; };
@@ -105,7 +104,6 @@
 		C3AFDBD92295C46F00B9CCD6 /* UIView+AsRectangleAndAsWidthHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AsRectangleAndAsWidthHeight.swift"; sourceTree = "<group>"; };
 		C3AFDBDB2295C49600B9CCD6 /* UIColor+AsRGBA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AsRGBA.swift"; sourceTree = "<group>"; };
 		C3AFDBDD2295C4D400B9CCD6 /* String+RegexMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RegexMatch.swift"; sourceTree = "<group>"; };
-		C3AFDBE02295C54500B9CCD6 /* PixelwormError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelwormError.swift; sourceTree = "<group>"; };
 		C3AFDBE22295C57700B9CCD6 /* String+IsValidMD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IsValidMD5.swift"; sourceTree = "<group>"; };
 		C3AFDBE52295C5DF00B9CCD6 /* HashHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashHolder.swift; sourceTree = "<group>"; };
 		C3AFDBEA2295C87800B9CCD6 /* TypeCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCounter.swift; sourceTree = "<group>"; };
@@ -179,7 +177,6 @@
 				C3CE4B712295688100099576 /* Supporting Files */,
 				C3D762BA22959C04000E95CF /* Extensions */,
 				C3D762AF2295950D000E95CF /* Services */,
-				C3CE4B78229594AB00099576 /* Models */,
 				C3CE4B75229593D600099576 /* Pixelworm.swift */,
 				C302B4452326452F005DEEDF /* PixelatedLog.swift */,
 			);
@@ -243,14 +240,6 @@
 				C3AFDBCF2295C1BA00B9CCD6 /* pixelworm.png */,
 			);
 			name = Repository;
-			sourceTree = "<group>";
-		};
-		C3AFDBDF2295C53B00B9CCD6 /* Errors */ = {
-			isa = PBXGroup;
-			children = (
-				C3AFDBE02295C54500B9CCD6 /* PixelwormError.swift */,
-			);
-			path = Errors;
 			sourceTree = "<group>";
 		};
 		C3AFDBE42295C5D300B9CCD6 /* Hash Holder */ = {
@@ -319,14 +308,6 @@
 				C34235F722953C6200265A0E /* Info.plist */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C3CE4B78229594AB00099576 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C3AFDBDF2295C53B00B9CCD6 /* Errors */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		C3D762AD229594CB000E95CF /* Request */ = {
@@ -547,7 +528,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3AFDBE12295C54500B9CCD6 /* PixelwormError.swift in Sources */,
 				C3D762C122959FE7000E95CF /* UpsertScreenRequest.swift in Sources */,
 				C302B44823264F1C005DEEDF /* Comparable+Clamped.swift in Sources */,
 				C3EC3D44231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift in Sources */,

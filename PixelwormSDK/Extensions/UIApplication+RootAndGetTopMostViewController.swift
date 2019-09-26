@@ -25,9 +25,7 @@ internal extension UIApplication {
         return viewController
     }
     
-    class func getTopMostViewController(
-        parent: UIViewController? = rootViewController
-    ) -> UIViewController? {
+    class func getTopMostViewController(parent: UIViewController? = rootViewController) -> UIViewController? {
         // Go deeper if type is `UINavigationController`
         if let navigationController = parent as? UINavigationController {
             return getTopMostViewController(parent: navigationController.visibleViewController)

@@ -30,17 +30,29 @@ public class Pixelworm {
     
     // MARK: - Public Methods
     
-    public static func attach(withApiKey apiKey: String, andSecretKey secretKey: String) throws {
+    public static func attach(withApiKey apiKey: String, andSecretKey secretKey: String) {
+        #if !DEBUG
+        
+        pprint(.warning, "Your application must be in DEBUG mode in order to export your views to Pixelworm servers. Cancelled attaching.")
+        
+        #else
+        
         if Pixelworm.shared.isAttached {
-            throw PixelwormError.alreadyAttached
+            pprint(.warning, "Pixelworm is already attached.")
+            
+            return
         }
         
         if !apiKey.isValidMD5 {
-            throw PixelwormError.apiKeyIsNotValid
+            pprint(.notify, "Your API Key is not valid.")
+            
+            return
         }
         
         if !secretKey.isValidMD5 {
-            throw PixelwormError.secretKeyIsNotValid
+            pprint(.notify, "Your Secret Key is invalid.")
+            
+            return
         }
         
         Pixelworm.shared.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: Pixelworm.shared.callback)
@@ -48,13 +60,23 @@ public class Pixelworm {
         RESTClient.shared.config = (apiKey: apiKey, secretKey: secretKey)
         
         Pixelworm.shared.isAttached = true
+        
+        #endif
     }
     
-    public static func detach() throws {
-        if !Pixelworm.shared.isAttached {
-            throw PixelwormError.alreadyDetached
-        }
+    public static func detach() {
+        #if !DEBUG
+        
+        pprint(.warning, "Your application must be in DEBUG mode in order to export your views to Pixelworm servers. Cancelled detaching.")
 
+        #else
+        
+        if !Pixelworm.shared.isAttached {
+            pprint(.warning, "Pixelworm is already detached.")
+            
+            return
+        }
+        
         Pixelworm.shared.timer.invalidate()
         Pixelworm.shared.timer = nil
         
@@ -64,6 +86,8 @@ public class Pixelworm {
         RESTClient.shared.config = nil
         
         Pixelworm.shared.isAttached = false
+        
+        #endif
     }
     
     // MARK: - Private Methods
@@ -71,7 +95,7 @@ public class Pixelworm {
     private func callback(_ : Timer) {
         upsertScreenIfChanged()
     }
-
+    
     private func upsertScreenIfChanged() {
         let activeViewController = UIApplication.visibleViewController!
         
@@ -101,7 +125,7 @@ public class Pixelworm {
         
         // Update hash value
         HashHolder.setLast(value: request)
- 
+        
         RESTClient.shared.upsertScreen(request) { result in
             switch(result) {
             case .success(let response):
@@ -277,7 +301,7 @@ public class Pixelworm {
                     $0.firstView == targetView &&
                     checkIfConstraintIsValid($0)
             }.first) else {
-                return nil
+                    return nil
             }
             
             constraints.append(nextPossibleConstraint)

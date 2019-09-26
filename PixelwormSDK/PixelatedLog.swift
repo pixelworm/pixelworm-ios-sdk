@@ -17,7 +17,7 @@ internal enum LogType {
         switch self {
         case .fatal:
             return "❗️"
-        
+            
         case .warning:
             return "⚠️"
             
