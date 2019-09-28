@@ -103,47 +103,69 @@ public class Pixelworm {
         
         let activeView = activeViewController.view!
         
-        var request = UpsertScreenRequest(
-            uniqueId: topMostViewControllerName,
-            // TODO: Get actual view controller name
-            name: topMostViewControllerName,
-            size: WidthHeight(width: Int(activeView.frame.width), height: Int(activeView.frame.height)),
-            base64Image: activeView.asImage().convertImageToBase64(),
-            views: convertUIViewsToFlatViewDTOs([activeView]),
-            constraints: []
-        )
-        
-        request.constraints = getConstraints(ofViews: [activeView], andViewDTOs: request.views)
-        
-        // Reset type counter
-        TypeCounter.reset()
-        
-        // Don't upsert if hash is not different from previous one
-        if !HashHolder.isDifferent(value: request) {
-            return
-        }
-        
-        // Update hash value
-        HashHolder.setLast(value: request)
-        
-        RESTClient.shared.upsertScreen(request) { result in
+        RESTClient.shared.getScreenDetail(of: topMostViewControllerName) { result in
+            var size = activeView.layer.frame.size
+            
             switch(result) {
             case .success(let response):
-                switch(response.type) {
-                case .enqueued:
-                    pprint(.notify, "Successfully enqueued \(request.name)! Please re-map your screen in Pixelworm Application in order to see newly exported screen.")
+                switch response.type {
+                case .mapped:
+                    size.height = CGFloat(response.height!)
                     
-                case .processedDirectly:
-                    pprint(.notify, "Successfully exported \(request.name)! Please check Screens page in Pixelworm Application in order to see newly exported screen.")
-                    
-                case .widthMismatch:
-                    let deviceNames = response.supportedDeviceNames!.joined(separator: ", ")
-                    
-                    pprint(.warning, "Failed to export \(request.name). Your application doesn't support the width of your currently working device. Please consider using \(deviceNames).")
+                default:
+                    break
                 }
                 
             case .failure(let error):
-                pprint(.fatal, "Failed to upload screen information to Pixelworm servers, error: \(error).")
+                pprint(.fatal, "Failed to get screen detail from Pixelworm servers, error: \(error).")
+                
+                return
+            }
+            
+            activeView.exportClosure(with: size) {
+                var request = UpsertScreenRequest(
+                    uniqueId: topMostViewControllerName,
+                    // TODO: Get actual view controller name
+                    name: topMostViewControllerName,
+                    size: WidthHeight(width: Int(activeView.layer.frame.width), height: Int(activeView.layer.frame.height)),
+                    base64Image: activeView.asImage().convertImageToBase64(),
+                    views: self.convertUIViewsToFlatViewDTOs([activeView]),
+                    constraints: []
+                )
+                
+                request.constraints = self.getConstraints(ofViews: [activeView], andViewDTOs: request.views)
+                
+                // Reset type counter
+                TypeCounter.reset()
+                
+                // Don't upsert if hash is not different from previous one
+                if !HashHolder.isDifferent(value: request) {
+                    return
+                }
+                
+                // Update hash value
+                HashHolder.setLast(value: request)
+                
+                RESTClient.shared.upsertScreen(request) { result in
+                    switch(result) {
+                    case .success(let response):
+                        switch(response.type) {
+                        case .enqueued:
+                            pprint(.notify, "Successfully enqueued \(request.name)! Please re-map your screen in Pixelworm Application in order to see newly exported screen.")
+                            
+                        case .processedDirectly:
+                            pprint(.notify, "Successfully exported \(request.name)! Please check Screens page in Pixelworm Application in order to see newly exported screen.")
+                            
+                        case .widthMismatch:
+                            let deviceNames = response.supportedDeviceNames!.joined(separator: ", ")
+                            
+                            pprint(.warning, "Failed to export \(request.name). Your application doesn't support the width of your currently working device. Please consider using \(deviceNames).")
+                        }
+                        
+                    case .failure(let error):
+                        pprint(.fatal, "Failed to upload screen information to Pixelworm servers, error: \(error).")
+                    }
+                }
             }
         }
     }

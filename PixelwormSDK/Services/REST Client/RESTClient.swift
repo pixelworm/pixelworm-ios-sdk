@@ -33,12 +33,24 @@ internal class RESTClient {
     
     // MARK: - Requests
     
-    private func doRequest<BodyType: Encodable, ResponseType: Decodable>(_ endpoint: String, method: HTTPMethod, body: BodyType?, completionHandler: @escaping (Result<ResponseType, Error>) -> ()) {
+    private func doRequest<ResponseBodyType: Decodable>(
+        _ endpoint: String,
+        queryParameters: [String: String] = [:],
+        method: HTTPMethod,
+        bodySupplier: (() -> Data)? = nil,
+        completionHandler: @escaping (Result<ResponseBodyType, Error>) -> ()
+    ) {
         // Throw assertion error if config is not set
-        assert(self.config != nil, "config must be set before calling doRequest(_:method:body:completionHandler:)")
+        assert(self.config != nil, "config must be set before calling doRequest")
+        
+        // Create URL Components
+        var urlComponents = URLComponents(string: RESTClient.BASE_URL + endpoint)!
+        
+        // Append query parameters to URL Components
+        urlComponents.queryItems = queryParameters.map { URLQueryItem(name: $0.key, value: $0.value) }
         
         // Create target URL
-        let url = URL(string: RESTClient.BASE_URL + endpoint)!
+        let url = urlComponents.url!
         
         // Create request
         var request = URLRequest(url: url)
@@ -52,13 +64,14 @@ internal class RESTClient {
         // Set authorization
         request.setValue("Basic \(usernamePasswordBase64String)", forHTTPHeaderField: "Authorization")
         
-        // Set body and content type if method is get and body is set
-        if method != .get, let bodyUnwrapped = body {
+        // Set body and content type if method is get and body supplier is set
+        if method != .get, let bodySupplier = bodySupplier {
+            // TODO: Maybe get content-type from supplier too?
             // Set content type
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
             // Set body
-            request.httpBody = try! JSONEncoder().encode(bodyUnwrapped)
+            request.httpBody = bodySupplier()
         }
         
         // Put SDK type and version info to request header
@@ -77,7 +90,9 @@ internal class RESTClient {
             switch (result) {
             case .success(let response, let data):
                 if response.statusCode == 403 || response.statusCode == 404 {
-                    completionHandler(.failure(RESTClientError.invalidCredentials))
+                    DispatchQueue.main.async {
+                        completionHandler(.failure(RESTClientError.invalidCredentials))
+                    }
                     
                     return
                 }
@@ -85,25 +100,33 @@ internal class RESTClient {
                 if response.statusCode != 200 {
                     let message = String(data: data, encoding: .utf8)
                     
-                    completionHandler(.failure(RESTClientError.unexpectedStatusCode(statusCode: response.statusCode, message: message)))
+                    DispatchQueue.main.async {
+                        completionHandler(.failure(RESTClientError.unexpectedStatusCode(statusCode: response.statusCode, message: message)))
+                    }
                     
                     return
                 }
                 
-                var deserializedResponse: ResponseType!
+                var deserializedResponse: ResponseBodyType!
                 
                 // Try to deserialize response
                 do {
-                    deserializedResponse = try JSONDecoder().decode(ResponseType.self, from: data)
+                    deserializedResponse = try JSONDecoder().decode(ResponseBodyType.self, from: data)
                 } catch let error {
-                    completionHandler(.failure(RESTClientError.deserializationFailure(error: error)))
+                    DispatchQueue.main.async {
+                        completionHandler(.failure(RESTClientError.deserializationFailure(error: error)))
+                    }
                     
                     return
                 }
                 
-                completionHandler(.success(deserializedResponse))
+                DispatchQueue.main.async {
+                    completionHandler(.success(deserializedResponse))
+                }
             case .failure(let error):
-                completionHandler(.failure(RESTClientError.general(error: error)))
+                DispatchQueue.main.async {
+                    completionHandler(.failure(RESTClientError.general(error: error)))
+                }
             }
         }
         
@@ -111,7 +134,13 @@ internal class RESTClient {
         task.resume()
     }
     
-    public func upsertScreen(_ request: UpsertScreenRequest, completionHandler: @escaping (Result<UpsertScreenResponse, Error>) -> ()) {
-        doRequest("/sdk/upsert/screen", method: .put, body: request, completionHandler: completionHandler)
+    public func upsertScreen(_ request: UpsertScreenRequest, completionHandler: @escaping (Result<UpsertScreenResponse, Error>) -> Void) {
+        doRequest("/sdk/upsert/screen", method: .put, bodySupplier: {
+            return try! JSONEncoder().encode(request)
+        }, completionHandler: completionHandler)
+    }
+    
+    public func getScreenDetail(of uniqueId: String, completionHandler: @escaping (Result<GetScreenDetailResponse, Error>) -> Void) {
+        doRequest("/sdk/screen-detail/\(uniqueId)", method: .get, completionHandler: completionHandler)
     }
 }

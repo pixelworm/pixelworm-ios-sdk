@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C302B4462326452F005DEEDF /* PixelatedLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302B4452326452F005DEEDF /* PixelatedLog.swift */; };
 		C302B44823264F1C005DEEDF /* Comparable+Clamped.swift in Sources */ = {isa = PBXBuildFile; fileRef = C302B44723264F1C005DEEDF /* Comparable+Clamped.swift */; };
+		C310F040233DF290004849D9 /* GetScreenDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C310F03F233DF290004849D9 /* GetScreenDetailResponse.swift */; };
+		C32BC52F233FBE6700CD20CD /* UIView+ExportClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32BC52E233FBE6700CD20CD /* UIView+ExportClosure.swift */; };
 		C34235FD22953C6200265A0E /* PixelwormSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34235F322953C6200265A0E /* PixelwormSDK.framework */; };
 		C342360222953C6200265A0E /* PixelwormSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C342360122953C6200265A0E /* PixelwormSDKTests.swift */; };
 		C342360422953C6200265A0E /* PixelwormSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = C34235F622953C6200265A0E /* PixelwormSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -81,6 +83,8 @@
 /* Begin PBXFileReference section */
 		C302B4452326452F005DEEDF /* PixelatedLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelatedLog.swift; sourceTree = "<group>"; };
 		C302B44723264F1C005DEEDF /* Comparable+Clamped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Comparable+Clamped.swift"; path = "../Comparable+Clamped.swift"; sourceTree = "<group>"; };
+		C310F03F233DF290004849D9 /* GetScreenDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetScreenDetailResponse.swift; sourceTree = "<group>"; };
+		C32BC52E233FBE6700CD20CD /* UIView+ExportClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ExportClosure.swift"; sourceTree = "<group>"; };
 		C34235F322953C6200265A0E /* PixelwormSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PixelwormSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34235F622953C6200265A0E /* PixelwormSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PixelwormSDK.h; sourceTree = "<group>"; };
 		C34235F722953C6200265A0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -345,6 +349,7 @@
 				C3AFDBD32295C33F00B9CCD6 /* UIApplication+RootAndGetTopMostViewController.swift */,
 				C3AFDBD52295C42100B9CCD6 /* UIImage+Base64.swift */,
 				C3AFDBD72295C44300B9CCD6 /* UIView+AsImage.swift */,
+				C32BC52E233FBE6700CD20CD /* UIView+ExportClosure.swift */,
 				C3AFDBD92295C46F00B9CCD6 /* UIView+AsRectangleAndAsWidthHeight.swift */,
 				C3AFDBDB2295C49600B9CCD6 /* UIColor+AsRGBA.swift */,
 				C3AFDBDD2295C4D400B9CCD6 /* String+RegexMatch.swift */,
@@ -376,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				C3D762C82295A050000E95CF /* UpsertScreenResponse.swift */,
+				C310F03F233DF290004849D9 /* GetScreenDetailResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -537,7 +543,9 @@
 				C3AFDBE62295C5DF00B9CCD6 /* HashHolder.swift in Sources */,
 				C3D762C422959FF7000E95CF /* Rectangle.swift in Sources */,
 				C3AFDBC82295BFA600B9CCD6 /* HTTPMethod.swift in Sources */,
+				C32BC52F233FBE6700CD20CD /* UIView+ExportClosure.swift in Sources */,
 				C302B4462326452F005DEEDF /* PixelatedLog.swift in Sources */,
+				C310F040233DF290004849D9 /* GetScreenDetailResponse.swift in Sources */,
 				C3AFDBDA2295C46F00B9CCD6 /* UIView+AsRectangleAndAsWidthHeight.swift in Sources */,
 				C3AFDBDC2295C49600B9CCD6 /* UIColor+AsRGBA.swift in Sources */,
 				C3AFDBEB2295C87800B9CCD6 /* TypeCounter.swift in Sources */,

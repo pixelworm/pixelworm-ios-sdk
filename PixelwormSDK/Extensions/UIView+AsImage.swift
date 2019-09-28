@@ -11,7 +11,7 @@ import Foundation
 internal extension UIView {
     func asImage() -> UIImage {
         // Create image context by image's frame size
-        UIGraphicsBeginImageContext(self.frame.size)
+        UIGraphicsBeginImageContext(self.layer.frame.size)
         
         // Render to created context
         self.layer.render(in: UIGraphicsGetCurrentContext()!)
