@@ -30,7 +30,7 @@ public class Pixelworm {
     
     // MARK: - Public Methods
     
-    public static func attach(withApiKey apiKey: String, andSecretKey secretKey: String) {
+    public static func attach(apiKey: String, secretKey: String) {
         #if !DEBUG
         
         pprint(.warning, "Your application must be in DEBUG mode in order to export your views to Pixelworm servers. Cancelled attaching.")
@@ -133,7 +133,7 @@ public class Pixelworm {
                     constraints: []
                 )
                 
-                request.constraints = self.getConstraints(ofViews: [activeView], andViewDTOs: request.views)
+                request.constraints = self.getConstraints(of: [activeView], and: request.views)
                 
                 // Reset type counter
                 TypeCounter.reset()
@@ -180,7 +180,7 @@ public class Pixelworm {
                 createdViews.append(contentsOf: convertUIViewsToFlatViewDTOs(uiView.subviews))
             }
             
-            if let view = getView(fromUIView: uiView) {
+            if let view = getView(from: uiView) {
                 createdViews.append(view)
             }
         }
@@ -195,7 +195,7 @@ public class Pixelworm {
         return true
     }
     
-    private func getView(fromUIView uiView: UIView) -> UpsertScreenRequest.View? {
+    private func getView(from uiView: UIView) -> UpsertScreenRequest.View? {
         var view = UpsertScreenRequest.View(
             uniqueId: uiView.identifier,
             // TODO: Get actual view name
@@ -207,10 +207,10 @@ public class Pixelworm {
         
         if let uiImageView = uiView as? UIImageView {
             view.type = .image
-            view.image = getImage(fromUIImageView: uiImageView)
+            view.image = getImage(from: uiImageView)
         } else if let uiLabel = uiView as? UILabel {
             view.type = .label
-            view.label = getLabel(fromUILabel: uiLabel)
+            view.label = getLabel(from: uiLabel)
         } else if shouldExportViewAsImage(uiView) {
             view.type = .image
             view.image = UpsertScreenRequest.View.Image(isPresent: false, size: nil)
@@ -221,7 +221,7 @@ public class Pixelworm {
         return view
     }
     
-    private func getImage(fromUIImageView uiImageView: UIImageView) -> UpsertScreenRequest.View.Image {
+    private func getImage(from uiImageView: UIImageView) -> UpsertScreenRequest.View.Image {
         guard let image = uiImageView.image else {
             return UpsertScreenRequest.View.Image(isPresent: false, size: nil)
         }
@@ -232,7 +232,7 @@ public class Pixelworm {
         )
     }
     
-    private func getLabel(fromUILabel uiLabel: UILabel) -> UpsertScreenRequest.View.Label {
+    private func getLabel(from uiLabel: UILabel) -> UpsertScreenRequest.View.Label {
         let rgbaColor = uiLabel.textColor.asRGBA() ?? (0, 0, 0, 0)
         
         // Get family name
@@ -388,11 +388,11 @@ public class Pixelworm {
         return true
     }
     
-    private func getConstraints(ofViews views: [UIView], andViewDTOs viewDTOs: [UpsertScreenRequest.View]) -> [UpsertScreenRequest.Constraint] {
+    private func getConstraints(of views: [UIView], and viewDTOs: [UpsertScreenRequest.View]) -> [UpsertScreenRequest.Constraint] {
         var constraintDTOs: [UpsertScreenRequest.Constraint] = []
         
         for view in views {
-            constraintDTOs.append(contentsOf: getConstraints(ofViews: view.subviews, andViewDTOs: viewDTOs))
+            constraintDTOs.append(contentsOf: getConstraints(of: view.subviews, and: viewDTOs))
             
             for constraint in view.constraints {
                 guard let resolvedConstraint = resolveConstraint(constraint, viewDTOs: viewDTOs) else {

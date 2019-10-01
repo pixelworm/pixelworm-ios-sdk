@@ -38,7 +38,7 @@ Make sure you replace `YOUR_API_KEY` and `YOUR_SECRET_KEY` with your application
 keys.
 
 ```swift
-Pixelworm.attach(withApiKey: "YOUR_API_KEY", andSecretKey: "YOUR_SECRET_KEY")
+Pixelworm.attach(apiKey: "YOUR_API_KEY", secretKey: "YOUR_SECRET_KEY")
 ```
 
 - In `applicationWillTerminate(_:)` add the lines below.

@@ -25,7 +25,7 @@ internal class RESTClient {
     
     // MARK: - Constants
     
-    private static let BASE_URL = "https://api.pixelworm.io"
+    private static let baseUrl = "https://api.pixelworm.io"
     
     // MARK: - Configurations
     
@@ -44,7 +44,7 @@ internal class RESTClient {
         assert(self.config != nil, "config must be set before calling doRequest")
         
         // Create URL Components
-        var urlComponents = URLComponents(string: RESTClient.BASE_URL + endpoint)!
+        var urlComponents = URLComponents(string: RESTClient.baseUrl + endpoint)!
         
         // Append query parameters to URL Components
         urlComponents.queryItems = queryParameters.map { URLQueryItem(name: $0.key, value: $0.value) }
