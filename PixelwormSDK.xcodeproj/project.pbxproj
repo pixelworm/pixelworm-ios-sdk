@@ -20,6 +20,7 @@
 		C342361B22953CDD00265A0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C342361A22953CDD00265A0E /* Assets.xcassets */; };
 		C342361E22953CDD00265A0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C342361C22953CDD00265A0E /* LaunchScreen.storyboard */; };
 		C35DEA5622D47B6200F6B5E4 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = C35DEA5522D47B6200F6B5E4 /* CONTRIBUTING.md */; };
+		C38A2FE92344DA9E007495FF /* ExtendedDefer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38A2FE82344DA9E007495FF /* ExtendedDefer.swift */; };
 		C3AFDBC82295BFA600B9CCD6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBC72295BFA600B9CCD6 /* HTTPMethod.swift */; };
 		C3AFDBD12295C1BA00B9CCD6 /* pixelworm.png in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDBCF2295C1BA00B9CCD6 /* pixelworm.png */; };
 		C3AFDBD22295C1BA00B9CCD6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDBD02295C1BA00B9CCD6 /* README.md */; };
@@ -99,6 +100,7 @@
 		C342361D22953CDD00265A0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C342361F22953CDD00265A0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C35DEA5522D47B6200F6B5E4 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
+		C38A2FE82344DA9E007495FF /* ExtendedDefer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedDefer.swift; sourceTree = "<group>"; };
 		C3AFDBC72295BFA600B9CCD6 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		C3AFDBCF2295C1BA00B9CCD6 /* pixelworm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pixelworm.png; sourceTree = "<group>"; };
 		C3AFDBD02295C1BA00B9CCD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				C3CE4B712295688100099576 /* Supporting Files */,
+				C38A2FE72344DA87007495FF /* Helpers */,
 				C3D762BA22959C04000E95CF /* Extensions */,
 				C3D762AF2295950D000E95CF /* Services */,
 				C3CE4B75229593D600099576 /* Pixelworm.swift */,
@@ -204,6 +207,14 @@
 				C3CE4B6D2295643A00099576 /* Views */,
 			);
 			path = PixelwormSDKExamples;
+			sourceTree = "<group>";
+		};
+		C38A2FE72344DA87007495FF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C38A2FE82344DA9E007495FF /* ExtendedDefer.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C3AFDBC42295BF7A00B9CCD6 /* REST Client */ = {
@@ -536,6 +547,7 @@
 			files = (
 				C3D762C122959FE7000E95CF /* UpsertScreenRequest.swift in Sources */,
 				C302B44823264F1C005DEEDF /* Comparable+Clamped.swift in Sources */,
+				C38A2FE92344DA9E007495FF /* ExtendedDefer.swift in Sources */,
 				C3EC3D44231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift in Sources */,
 				C3D762B22295952B000E95CF /* RESTClient.swift in Sources */,
 				C3D762C62295A024000E95CF /* WidthHeight.swift in Sources */,

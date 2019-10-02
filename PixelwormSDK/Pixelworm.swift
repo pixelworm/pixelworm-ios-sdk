@@ -61,11 +61,7 @@ public class Pixelworm {
             return
         }
         
-        Pixelworm.shared.timer = Timer.scheduledTimer(
-            withTimeInterval: exportTimeInterval,
-            repeats: true,
-            block: Pixelworm.shared.callback
-        )
+        Pixelworm.shared.startTimer()
         
         RESTClient.shared.config = (apiKey: apiKey, secretKey: secretKey)
         
@@ -91,8 +87,7 @@ public class Pixelworm {
             return
         }
         
-        Pixelworm.shared.timer.invalidate()
-        Pixelworm.shared.timer = nil
+        Pixelworm.shared.stopTimer()
         
         HashHolder.reset()
         TypeCounter.reset()
@@ -106,18 +101,44 @@ public class Pixelworm {
     
     // MARK: - Private Methods
     
-    private func callback(_ : Timer) {
-        upsertScreenIfChanged()
+    private func startTimer() {
+        Pixelworm.shared.timer = Timer.scheduledTimer(
+            withTimeInterval: Pixelworm.exportTimeInterval,
+            repeats: true,
+            block: Pixelworm.shared.callback
+        )
     }
     
-    private func upsertScreenIfChanged() {
+    private func stopTimer() {
+        Pixelworm.shared.timer?.invalidate()
+        Pixelworm.shared.timer = nil
+    }
+    
+    private func callback(_ : Timer) {
+        stopTimer()
+        
+        upsertScreenIfChanged() {
+            // Don't start timer again if we're detached
+            if !Pixelworm.shared.isAttached {
+                return
+            }
+            
+            self.startTimer()
+        }
+    }
+    
+    private func upsertScreenIfChanged(_ completionHandler: @escaping () -> Void) {
+        let extendedDefer = ExtendedDefer {
+            completionHandler()
+        }
+        
         let activeViewController = UIApplication.visibleViewController!
         
         let topMostViewControllerName = UIApplication.getTopMostViewController()?.className ?? "FailedToGetViewControllerName"
         
         let activeView = activeViewController.view!
         
-        RESTClient.shared.getScreenDetail(of: topMostViewControllerName) { result in
+        RESTClient.shared.getScreenDetail(of: topMostViewControllerName) { [extendedDefer] result in
             var size = activeView.layer.frame.size
             
             switch(result) {
@@ -136,7 +157,7 @@ public class Pixelworm {
                 return
             }
             
-            activeView.exportClosure(with: size) {
+            activeView.exportClosure(with: size) { [extendedDefer] in
                 var request = UpsertScreenRequest(
                     uniqueId: topMostViewControllerName,
                     // TODO: Get actual view controller name
@@ -160,7 +181,11 @@ public class Pixelworm {
                 // Update hash value
                 HashHolder.setLast(value: request)
                 
-                RESTClient.shared.upsertScreen(request) { result in
+                RESTClient.shared.upsertScreen(request) { [extendedDefer] result in
+                    // NOTE: Do not remove this line below
+                    // it keeps a strong reference to extended defer.
+                    _ = extendedDefer
+                    
                     switch(result) {
                     case .success(let response):
                         switch(response.type) {
