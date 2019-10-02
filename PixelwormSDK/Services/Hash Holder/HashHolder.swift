@@ -11,10 +11,8 @@ import Foundation
 internal class HashHolder {
     private static var lastData: Data?
     
-    /**
-     * Private constructor.
-     * We don't want anyone to an create instance of `HashHolder`.
-     */
+    /// Private constructor.
+    /// We don't want anyone to an create instance of `HashHolder`.
     private init() {
         
     }

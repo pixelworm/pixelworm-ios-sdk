@@ -9,10 +9,8 @@
 import Foundation
 
 internal class BundleManager {
-    /**
-     * Private constructor.
-     * We don't want anyone to an create instance of `BundleManager`.
-     */
+    /// Private constructor.
+    /// We don't want anyone to an create instance of `BundleManager`.
     private init() {
         
     }

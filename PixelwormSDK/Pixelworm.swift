@@ -13,12 +13,14 @@ public class Pixelworm {
     
     private static let shared = Pixelworm()
     
+    // MARK: - Constants
+    
+    private static let exportTimeInterval: TimeInterval = 5
+    
     // MARK: - Constructors
     
-    /**
-     * Private constructor.
-     * We don't want anyone to an create instance of `Pixelworm`.
-     */
+    /// Private constructor.
+    /// We don't want anyone to an create instance of `Pixelworm`.
     private init() {
         
     }
@@ -33,7 +35,11 @@ public class Pixelworm {
     public static func attach(apiKey: String, secretKey: String) {
         #if !DEBUG
         
-        pprint(.warning, "Your application must be in DEBUG mode in order to export your views to Pixelworm servers. Cancelled attaching.")
+        pprint(
+            .warning,
+            "Your application must be in DEBUG mode in order to " +
+            "export your views to Pixelworm servers. Cancelled attaching."
+        )
         
         #else
         
@@ -55,7 +61,11 @@ public class Pixelworm {
             return
         }
         
-        Pixelworm.shared.timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: Pixelworm.shared.callback)
+        Pixelworm.shared.timer = Timer.scheduledTimer(
+            withTimeInterval: exportTimeInterval,
+            repeats: true,
+            block: Pixelworm.shared.callback
+        )
         
         RESTClient.shared.config = (apiKey: apiKey, secretKey: secretKey)
         
@@ -67,7 +77,11 @@ public class Pixelworm {
     public static func detach() {
         #if !DEBUG
         
-        pprint(.warning, "Your application must be in DEBUG mode in order to export your views to Pixelworm servers. Cancelled detaching.")
+        pprint(
+            .warning,
+            "Your application must be in DEBUG mode in order to " +
+            "export your views to Pixelworm servers. Cancelled detaching."
+        )
 
         #else
         

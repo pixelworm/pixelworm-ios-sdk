@@ -17,7 +17,7 @@ internal class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Attach Pixelworm
-        Pixelworm.attach(apiKey: "YOUR_API_KEY", secretKey: "YOUR_SECRET_KEY")
+        Pixelworm.attach(apiKey: "018f279113724a6aa4c6ba0ee31c59ee", secretKey: "a2f4822bfa2e46328308d6b0bc42b1f5")
         
         return true
     }

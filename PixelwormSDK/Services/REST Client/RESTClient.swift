@@ -15,10 +15,8 @@ internal class RESTClient {
     
     // MARK: - Constructors
     
-    /**
-     * Private constructor.
-     * We don't want anyone to an create instance of `RESTClient`.
-     */
+    /// Private constructor.
+    /// We don't want anyone to an create instance of `RESTClient`.
     private init() {
         
     }

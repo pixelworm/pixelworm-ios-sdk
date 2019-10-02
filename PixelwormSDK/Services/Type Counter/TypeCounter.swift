@@ -11,10 +11,8 @@ import Foundation
 internal class TypeCounter {
     private static var types = [String: Int]()
     
-    /**
-     * Private constructor.
-     * We don't want anyone to an create instance of `TypeCounter`.
-     */
+    /// Private constructor.
+    /// We don't want anyone to an create instance of `TypeCounter`.
     private init() {
         
     }
