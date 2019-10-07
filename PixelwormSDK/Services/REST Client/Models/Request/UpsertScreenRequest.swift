@@ -128,7 +128,6 @@ internal struct UpsertScreenRequest: Encodable {
         public var viewUniqueId: String
         public var attribute: Attribute
         public var value: Double
-        public var hasTarget: Bool
         public var targetViewUniqueId: String?
         public var targetAttribute: Attribute?
         

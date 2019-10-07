@@ -445,7 +445,6 @@ public class Pixelworm {
                     viewUniqueId: firstView.identifier,
                     attribute: getConvertedAttribute(resolvedConstraint.firstAttribute)!,
                     value: Double(resolvedConstraint.constant),
-                    hasTarget: true,
                     targetViewUniqueId: secondView.identifier,
                     targetAttribute: getConvertedAttribute(resolvedConstraint.secondAttribute)
                 )
@@ -454,7 +453,6 @@ public class Pixelworm {
                     $0.viewUniqueId == constraintDTO.viewUniqueId
                         && $0.attribute == constraintDTO.attribute
                         && $0.value == constraintDTO.value
-                        && $0.hasTarget == constraintDTO.hasTarget
                         && $0.targetViewUniqueId == constraintDTO.targetViewUniqueId
                         && $0.targetAttribute == constraintDTO.targetAttribute
                 }
