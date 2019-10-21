@@ -35,7 +35,6 @@ internal extension UIView {
             }
         }
         
-        
         // Call closure
         closure()
     }

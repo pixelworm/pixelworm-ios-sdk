@@ -21,6 +21,7 @@
 		C342361E22953CDD00265A0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C342361C22953CDD00265A0E /* LaunchScreen.storyboard */; };
 		C35DEA5622D47B6200F6B5E4 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = C35DEA5522D47B6200F6B5E4 /* CONTRIBUTING.md */; };
 		C38A2FE92344DA9E007495FF /* ExtendedDefer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38A2FE82344DA9E007495FF /* ExtendedDefer.swift */; };
+		C3A35BC2235DB737009DB9A4 /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A35BC1235DB737009DB9A4 /* Exporter.swift */; };
 		C3AFDBC82295BFA600B9CCD6 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBC72295BFA600B9CCD6 /* HTTPMethod.swift */; };
 		C3AFDBD12295C1BA00B9CCD6 /* pixelworm.png in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDBCF2295C1BA00B9CCD6 /* pixelworm.png */; };
 		C3AFDBD22295C1BA00B9CCD6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDBD02295C1BA00B9CCD6 /* README.md */; };
@@ -101,6 +102,7 @@
 		C342361F22953CDD00265A0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C35DEA5522D47B6200F6B5E4 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		C38A2FE82344DA9E007495FF /* ExtendedDefer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedDefer.swift; sourceTree = "<group>"; };
+		C3A35BC1235DB737009DB9A4 /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
 		C3AFDBC72295BFA600B9CCD6 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		C3AFDBCF2295C1BA00B9CCD6 /* pixelworm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pixelworm.png; sourceTree = "<group>"; };
 		C3AFDBD02295C1BA00B9CCD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				C38A2FE72344DA87007495FF /* Helpers */,
 				C3D762BA22959C04000E95CF /* Extensions */,
 				C3D762AF2295950D000E95CF /* Services */,
+				C3A35BC1235DB737009DB9A4 /* Exporter.swift */,
 				C3CE4B75229593D600099576 /* Pixelworm.swift */,
 				C302B4452326452F005DEEDF /* PixelatedLog.swift */,
 			);
@@ -555,6 +558,7 @@
 				C3AFDBE62295C5DF00B9CCD6 /* HashHolder.swift in Sources */,
 				C3D762C422959FF7000E95CF /* Rectangle.swift in Sources */,
 				C3AFDBC82295BFA600B9CCD6 /* HTTPMethod.swift in Sources */,
+				C3A35BC2235DB737009DB9A4 /* Exporter.swift in Sources */,
 				C32BC52F233FBE6700CD20CD /* UIView+ExportClosure.swift in Sources */,
 				C302B4462326452F005DEEDF /* PixelatedLog.swift in Sources */,
 				C310F040233DF290004849D9 /* GetScreenDetailResponse.swift in Sources */,

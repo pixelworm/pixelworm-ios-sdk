@@ -15,4 +15,10 @@ internal struct Rectangle: Encodable {
     public var y: Int
     public var width: Int
     public var height: Int
+    
+    // MARK: - Public Methods
+    
+    public var isEmpty: Bool {
+        return width == 0 || height == 0;
+    }
 }
