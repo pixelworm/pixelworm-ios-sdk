@@ -221,7 +221,7 @@ internal class Exporter {
                     $0.firstView == targetView &&
                     checkIfConstraintIsValid($0)
             }.first) else {
-                    return nil
+                return nil
             }
             
             constraints.append(nextPossibleConstraint)
@@ -287,10 +287,24 @@ internal class Exporter {
     }
     
     private func getConstraints(of views: [UIView], and viewDTOs: [UpsertScreenRequest.View]) -> [UpsertScreenRequest.Constraint] {
+        var constraints: [UpsertScreenRequest.Constraint] = []
+            
+        // Get actual constraints
+        constraints.append(contentsOf: getConstraintsExt(of: views, and: viewDTOs))
+        
+        // Get default constraints
+        constraints.append(contentsOf: getConstraintsDefault(of: viewDTOs, constraints: constraints))
+        
+        return constraints
+    }
+    
+    private func getConstraintsExt(of views: [UIView], and viewDTOs: [UpsertScreenRequest.View]) -> [UpsertScreenRequest.Constraint] {
         var constraintDTOs: [UpsertScreenRequest.Constraint] = []
         
         for view in views {
-            constraintDTOs.append(contentsOf: getConstraints(of: view.subviews, and: viewDTOs))
+            if !view.subviews.isEmpty {
+                constraintDTOs.append(contentsOf: getConstraintsExt(of: view.subviews, and: viewDTOs))
+            }
             
             for constraint in view.constraints {
                 guard let resolvedConstraint = resolveConstraint(constraint, viewDTOs: viewDTOs) else {
@@ -328,9 +342,54 @@ internal class Exporter {
         return constraintDTOs
     }
     
+    private func getConstraintsDefault(of viewDTOs: [UpsertScreenRequest.View], constraints actualConstraints: [UpsertScreenRequest.Constraint]) -> [UpsertScreenRequest.Constraint] {
+        var constraints: [UpsertScreenRequest.Constraint] = []
+        
+        for viewDTO in viewDTOs {
+            if !shouldAddDefaultConstraints(of: viewDTO, and: actualConstraints) {
+                continue
+            }
+            
+            // Create constraints
+            let leadingConstraint = UpsertScreenRequest.Constraint(
+                viewUniqueId: viewDTO.uniqueId,
+                attribute: .leading,
+                value: Double(viewDTO.frame.x),
+                targetViewUniqueId: self.activeView.identifier,
+                targetAttribute: .leading
+            )
+            
+            let topConstraint = UpsertScreenRequest.Constraint(
+                viewUniqueId: viewDTO.uniqueId,
+                attribute: .top,
+                value: Double(viewDTO.frame.y),
+                targetViewUniqueId: self.activeView.identifier,
+                targetAttribute: .top
+            )
+            
+            // Add constraints
+            constraints.append(leadingConstraint)
+            constraints.append(topConstraint)
+        }
+        
+        return constraints
+    }
+    
+    private func shouldAddDefaultConstraints(of viewDTO: UpsertScreenRequest.View, and constraints: [UpsertScreenRequest.Constraint]) -> Bool {
+        let attributesThatMustNotExist: [UpsertScreenRequest.Constraint.Attribute] = [
+            .top, .bottom, .leading, .trailing
+        ]
+        
+        return attributesThatMustNotExist.map { attributeThatMustNotExist in
+            return constraints.contains { constraint in
+                return constraint.viewUniqueId == viewDTO.uniqueId && constraint.attribute == attributeThatMustNotExist
+            }
+        }.allSatisfy { !$0 }
+    }
+    
     private func isAttributeSupported(_ attribute: NSLayoutConstraint.Attribute) -> Bool {
         let supportedConstraints: [NSLayoutConstraint.Attribute] = [
-            .left, .right, .top, .bottom, .leading, .trailing
+            .top, .bottom, .leading, .trailing
         ]
         
         return supportedConstraints.contains(attribute)
@@ -338,8 +397,6 @@ internal class Exporter {
     
     private func getConvertedAttribute(_ attribute: NSLayoutConstraint.Attribute) -> UpsertScreenRequest.Constraint.Attribute? {
         let conversionDictionary: [NSLayoutConstraint.Attribute: UpsertScreenRequest.Constraint.Attribute] = [
-            .left: .leading,
-            .right: .trailing,
             .top: .top,
             .bottom: .bottom,
             .leading: .leading,
