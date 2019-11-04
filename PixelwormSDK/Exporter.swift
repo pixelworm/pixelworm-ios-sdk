@@ -160,7 +160,17 @@ internal class Exporter {
     }
     
     private func shouldExportViewAsImage(_ uiView: UIView) -> Bool {
-        if uiView.isKind(of: UISwitch.self) {
+        if uiView == self.activeView {
+            return true
+        }
+        
+        if !uiView.isMember(of: UIView.self) &&
+            // Table View
+            !uiView.isKind(of: UITableViewCell.self) &&
+            !(uiView.superview?.isKind(of: UITableViewCell.self) ?? true) &&
+            // Collection View
+            !uiView.isKind(of: UICollectionViewCell.self) &&
+            !(uiView.superview?.isKind(of: UICollectionViewCell.self) ?? true) {
             return true
         }
         
@@ -168,7 +178,8 @@ internal class Exporter {
             uiView.backgroundColor == .clear ||
             uiView.backgroundColor == uiView.superview?.backgroundColor) &&
             (uiView.layer.shadowRadius == 0 || uiView.layer.shadowOpacity == 0) &&
-            uiView.layer.borderWidth == 0 {
+            uiView.layer.borderWidth == 0 &&
+            uiView.layer.cornerRadius == 0 {
             return false
         }
         
