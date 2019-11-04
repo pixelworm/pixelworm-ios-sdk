@@ -387,6 +387,11 @@ internal class Exporter {
     }
     
     private func shouldAddDefaultConstraints(of viewDTO: UpsertScreenRequest.View, and constraints: [UpsertScreenRequest.Constraint]) -> Bool {
+        // Don't create looped constraints
+        if viewDTO.uniqueId == self.activeView.identifier {
+            return false
+        }
+        
         let attributesThatMustNotExist: [UpsertScreenRequest.Constraint.Attribute] = [
             .top, .bottom, .leading, .trailing
         ]
