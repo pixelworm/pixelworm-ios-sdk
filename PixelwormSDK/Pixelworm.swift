@@ -134,8 +134,8 @@ public class Pixelworm {
         
         let exporter = Exporter()
         
-        RESTClient.shared.getScreenDetail(of: exporter.topMostViewControllerName) { [extendedDefer] result in
-            var size = exporter.actualSize
+        RESTClient.shared.getScreenDetail(of: exporter.viewControllerName) { [extendedDefer] result in
+            var size = exporter.size
             
             switch(result) {
             case .success(let response):

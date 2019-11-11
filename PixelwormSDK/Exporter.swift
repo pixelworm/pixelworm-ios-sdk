@@ -9,47 +9,43 @@
 import UIKit
 
 internal class Exporter {
-    private var activeViewController: UIViewController
-    private var topMostViewController: UIViewController
+    private var visibleViewController: UIViewController
+    public private(set) var viewControllerName: String
     private var frameRectangle: Rectangle!
     
     public init() {
-        self.activeViewController = UIApplication.visibleViewController!
-        self.topMostViewController = UIApplication.getTopMostViewController()!
+        self.visibleViewController = UIApplication.visibleViewController!
+        self.viewControllerName = UIApplication.getTopMostViewController()!.className
     }
     
-    public var topMostViewControllerName: String {
-        return self.topMostViewController.className
+    public var visibleView: UIView {
+        return self.visibleViewController.view!
     }
     
-    public var activeView: UIView {
-        return self.activeViewController.view!
-    }
-    
-    public var actualSize: CGSize {
-        return self.activeView.layer.frame.size
+    public var size: CGSize {
+        return UIApplication.shared.keyWindow!.layer.frame.size
     }
     
     public func getUpsertScreenRequest(with size: CGSize) -> UpsertScreenRequest? {
         var request: UpsertScreenRequest! = nil
         
-        activeView.exportClosure(with: size) {
-            self.frameRectangle = self.activeView.asRectangle()
+        UIApplication.shared.exportClosure(with: size) {
+            self.frameRectangle = self.visibleView.asRectangle()
             
             request = UpsertScreenRequest(
-                uniqueId: topMostViewControllerName,
+                uniqueId: viewControllerName,
                 // TODO: Get actual view controller name
-                name: topMostViewControllerName,
+                name: viewControllerName,
                 size: WidthHeight(
-                    width: Int(activeView.layer.frame.width),
-                    height: Int(activeView.layer.frame.height)
+                    width: Int(visibleView.layer.frame.width),
+                    height: Int(visibleView.layer.frame.height)
                 ),
-                base64Image: activeView.asImage().convertImageToBase64(),
-                views: self.convertUIViewsToFlatViewDTOs([activeView]),
+                base64Image: visibleView.asImage().convertImageToBase64(),
+                views: self.convertUIViewsToFlatViewDTOs([visibleView]),
                 constraints: []
             )
             
-            request.constraints = self.getConstraints(of: [activeView], and: request.views)
+            request.constraints = self.getConstraints(of: [visibleView], and: request.views)
             
             // Reset type counter
             TypeCounter.reset()
@@ -160,7 +156,7 @@ internal class Exporter {
     }
     
     private func shouldExportViewAsImage(_ uiView: UIView) -> Bool {
-        if uiView == self.activeView {
+        if uiView == self.visibleView {
             return true
         }
         
@@ -366,7 +362,7 @@ internal class Exporter {
                 viewUniqueId: viewDTO.uniqueId,
                 attribute: .leading,
                 value: Double(viewDTO.frame.x),
-                targetViewUniqueId: self.activeView.identifier,
+                targetViewUniqueId: self.visibleView.identifier,
                 targetAttribute: .leading
             )
             
@@ -374,7 +370,7 @@ internal class Exporter {
                 viewUniqueId: viewDTO.uniqueId,
                 attribute: .top,
                 value: Double(viewDTO.frame.y),
-                targetViewUniqueId: self.activeView.identifier,
+                targetViewUniqueId: self.visibleView.identifier,
                 targetAttribute: .top
             )
             
@@ -388,7 +384,7 @@ internal class Exporter {
     
     private func shouldAddDefaultConstraints(of viewDTO: UpsertScreenRequest.View, and constraints: [UpsertScreenRequest.Constraint]) -> Bool {
         // Don't create looped constraints
-        if viewDTO.uniqueId == self.activeView.identifier {
+        if viewDTO.uniqueId == self.visibleView.identifier {
             return false
         }
         

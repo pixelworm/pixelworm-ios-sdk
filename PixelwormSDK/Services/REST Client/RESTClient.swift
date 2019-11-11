@@ -95,6 +95,14 @@ internal class RESTClient {
                     return
                 }
                 
+                if response.statusCode == 402 {
+                    DispatchQueue.main.async {
+                        completionHandler(.failure(RESTClientError.membershipExpired))
+                    }
+                    
+                    return
+                }
+                
                 if response.statusCode != 200 {
                     let message = String(data: data, encoding: .utf8)
                     
