@@ -136,8 +136,8 @@ internal struct UpsertScreenRequest: Encodable {
         internal enum Attribute: String, Encodable {
             case top = "TOP"
             case bottom = "BOTTOM"
-            case leading = "LEADING"
-            case trailing = "TRAILING"
+            case left = "LEFT"
+            case right = "RIGHT"
         }
     }
 }

@@ -360,10 +360,10 @@ internal class Exporter {
             // Create constraints
             let leadingConstraint = UpsertScreenRequest.Constraint(
                 viewUniqueId: viewDTO.uniqueId,
-                attribute: .leading,
+                attribute: .left,
                 value: Double(viewDTO.frame.x),
                 targetViewUniqueId: self.visibleView.identifier,
-                targetAttribute: .leading
+                targetAttribute: .left
             )
             
             let topConstraint = UpsertScreenRequest.Constraint(
@@ -389,7 +389,7 @@ internal class Exporter {
         }
         
         let attributesThatMustNotExist: [UpsertScreenRequest.Constraint.Attribute] = [
-            .top, .bottom, .leading, .trailing
+            .top, .bottom, .left, .right
         ]
         
         return attributesThatMustNotExist.map { attributeThatMustNotExist in
@@ -400,19 +400,16 @@ internal class Exporter {
     }
     
     private func isAttributeSupported(_ attribute: NSLayoutConstraint.Attribute) -> Bool {
-        let supportedConstraints: [NSLayoutConstraint.Attribute] = [
-            .top, .bottom, .leading, .trailing
-        ]
-        
-        return supportedConstraints.contains(attribute)
+        return getConvertedAttribute(attribute) != nil
     }
     
     private func getConvertedAttribute(_ attribute: NSLayoutConstraint.Attribute) -> UpsertScreenRequest.Constraint.Attribute? {
         let conversionDictionary: [NSLayoutConstraint.Attribute: UpsertScreenRequest.Constraint.Attribute] = [
             .top: .top,
             .bottom: .bottom,
-            .leading: .leading,
-            .trailing: .trailing
+            // TODO: These are not right values
+            .leading: .left,
+            .trailing: .right
         ]
         
         return conversionDictionary[attribute]
