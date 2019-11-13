@@ -358,7 +358,7 @@ internal class Exporter {
             }
             
             // Create constraints
-            let leadingConstraint = UpsertScreenRequest.Constraint(
+            let leftConstraint = UpsertScreenRequest.Constraint(
                 viewUniqueId: viewDTO.uniqueId,
                 attribute: .left,
                 value: Double(viewDTO.frame.x),
@@ -375,7 +375,7 @@ internal class Exporter {
             )
             
             // Add constraints
-            constraints.append(leadingConstraint)
+            constraints.append(leftConstraint)
             constraints.append(topConstraint)
         }
         
