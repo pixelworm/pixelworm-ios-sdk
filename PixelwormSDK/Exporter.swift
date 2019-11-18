@@ -103,8 +103,10 @@ internal class Exporter {
             view.type = .image
             view.image = getImage(from: uiImageView)
         } else if let uiLabel = uiView as? UILabel {
+            guard let label = getLabel(from: uiLabel) else { return nil }
+            
             view.type = .label
-            view.label = getLabel(from: uiLabel)
+            view.label = label
         } else if shouldExportViewAsImage(uiView) {
             view.type = .image
             view.image = UpsertScreenRequest.View.Image(isPresent: false, size: nil)
@@ -126,7 +128,12 @@ internal class Exporter {
         )
     }
     
-    private func getLabel(from uiLabel: UILabel) -> UpsertScreenRequest.View.Label {
+    private func getLabel(from uiLabel: UILabel) -> UpsertScreenRequest.View.Label? {
+        // Don't return label if it doesn't have any text in it
+        if uiLabel.text == nil || uiLabel.text!.isEmpty {
+            return nil
+        }
+        
         let rgbaColor = uiLabel.textColor.asRGBA() ?? (0, 0, 0, 0)
         
         // Get family name
