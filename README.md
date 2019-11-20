@@ -1,5 +1,7 @@
 ![Pixelworm Logo](https://raw.githubusercontent.com/Pixelworm/pixelworm-ios-sdk/master/pixelworm.png)
 
+<a href="https://cocoapods.org/pods/PixelwormSDK"><img src="https://img.shields.io/cocoapods/v/PixelwormSDK.svg" alt="Cocoapods" /></a>
+
 # Pixelworm iOS SDK
 
 ## Contents
