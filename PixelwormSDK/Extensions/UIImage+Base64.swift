@@ -6,7 +6,7 @@
 //  Copyright © 2019 Pixelworm. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 internal extension UIImage {
     //

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Pixelworm. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 internal extension UIApplication {
     func exportClosure(with size: CGSize?, closure: () -> Void) {
