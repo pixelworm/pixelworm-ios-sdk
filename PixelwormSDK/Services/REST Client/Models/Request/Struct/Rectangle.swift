@@ -19,6 +19,6 @@ internal struct Rectangle: Encodable {
     // MARK: - Public Methods
     
     public var isEmpty: Bool {
-        return width == 0 || height == 0;
+        return width == 0 || height == 0
     }
 }
