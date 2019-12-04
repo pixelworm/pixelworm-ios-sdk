@@ -84,7 +84,7 @@
 
 /* Begin PBXFileReference section */
 		C302B4452326452F005DEEDF /* PixelatedLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelatedLog.swift; sourceTree = "<group>"; };
-		C302B44723264F1C005DEEDF /* Comparable+Clamped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Comparable+Clamped.swift"; path = "../Comparable+Clamped.swift"; sourceTree = "<group>"; };
+		C302B44723264F1C005DEEDF /* Comparable+Clamped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comparable+Clamped.swift"; sourceTree = "<group>"; };
 		C310F03F233DF290004849D9 /* GetScreenDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetScreenDetailResponse.swift; sourceTree = "<group>"; };
 		C32BC52E233FBE6700CD20CD /* UIApplication+ExportClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+ExportClosure.swift"; sourceTree = "<group>"; };
 		C34235F322953C6200265A0E /* PixelwormSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PixelwormSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
