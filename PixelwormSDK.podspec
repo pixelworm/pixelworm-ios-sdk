@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name         = "PixelwormSDK"
-    spec.version      = "1.0.21"
+    spec.version      = "1.0.22"
     spec.summary      = "Pixelworm iOS SDK to export screens"
 
     spec.description  = <<-DESC
@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
     spec.homepage     = "https://github.com/pixelworm/pixelworm-ios-sdk"
     spec.author       = { "Doğu Emre DEMİRÇİVİ" => "emre@pixelworm.io" }
 
-    spec.ios.deployment_target = "11.0"
+    spec.ios.deployment_target = "10.0"
     spec.swift_version = "5"
 
     spec.license      = { :type => "MIT", :file => "LICENSE" }
