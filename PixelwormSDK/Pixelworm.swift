@@ -137,7 +137,7 @@ public class Pixelworm {
         RESTClient.shared.getScreenDetail(of: exporter.viewControllerName) { [extendedDefer] result in
             var size = exporter.size
             
-            switch(result) {
+            switch result {
             case .success(let response):
                 switch response.type {
                 case .mapped:
@@ -162,9 +162,9 @@ public class Pixelworm {
                 // it keeps a strong reference to extended defer.
                 _ = extendedDefer
                 
-                switch(result) {
+                switch result {
                 case .success(let response):
-                    switch(response.type) {
+                    switch response.type {
                     case .enqueued:
                         pprint(.notify, "Successfully enqueued \(request.name)! Please re-map your screen in Pixelworm Application in order to see newly exported screen.")
                         

@@ -21,4 +21,13 @@ internal struct Rectangle: Encodable {
     public var isEmpty: Bool {
         return width == 0 || height == 0
     }
+    
+    // MARK: - Operator Overloads
+    
+    static func == (lhs: Rectangle, rhs: Rectangle) -> Bool {
+        return lhs.x == rhs.x &&
+            lhs.y == rhs.y &&
+            lhs.width == rhs.width &&
+            lhs.height == rhs.height
+    }
 }

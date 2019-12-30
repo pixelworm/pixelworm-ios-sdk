@@ -9,7 +9,7 @@
 import UIKit
 
 internal extension UIView {
-    func asRectangle(frameRect: Rectangle? = nil) -> Rectangle {
+    func asAbsoluteRectangle(frameRect: Rectangle? = nil) -> Rectangle {
         let absolutePosition = self.superview?.convert(self.frame.origin, to: nil) ?? self.frame.origin
         
         var rectangle = Rectangle(

@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import AVFoundation
 
 internal class Exporter {
     private var visibleViewController: UIViewController
     public private(set) var viewControllerName: String
     private var frameRectangle: Rectangle!
+    private var absoluteImageFrames: [UIImageView: (absoluteFrame: Rectangle, absoluteInnerImageFrame: Rectangle)]
     
     public init() {
         self.visibleViewController = UIApplication.visibleViewController!
         self.viewControllerName = UIApplication.getTopMostViewController()!.className
+        self.absoluteImageFrames = [:]
     }
     
     public var visibleView: UIView {
@@ -30,7 +33,7 @@ internal class Exporter {
         var request: UpsertScreenRequest! = nil
         
         UIApplication.shared.exportClosure(with: size) {
-            self.frameRectangle = self.visibleView.asRectangle()
+            self.frameRectangle = self.visibleView.asAbsoluteRectangle()
             
             request = UpsertScreenRequest(
                 uniqueId: viewControllerName,
@@ -47,6 +50,8 @@ internal class Exporter {
             
             request.constraints = self.getConstraints(of: [visibleView], and: request.views)
             
+            updateImageViewConstraints(&request)
+            
             // Reset type counter
             TypeCounter.reset()
             
@@ -60,6 +65,51 @@ internal class Exporter {
         }
         
         return request
+    }
+    
+    private func updateImageViewConstraints(_ request: inout UpsertScreenRequest) {
+        for (uiImageView, (absoluteFrame, absoluteInnerImageFrame)) in self.absoluteImageFrames {
+            if absoluteFrame == absoluteInnerImageFrame { continue }
+            
+            for (viewIndex, view) in request.views.enumerated() {
+                if view.uniqueId != uiImageView.identifier { continue }
+                
+                let xDifference = Double(absoluteFrame.x - absoluteInnerImageFrame.x)
+                let yDifference = Double(absoluteFrame.y - absoluteInnerImageFrame.y)
+                let widthDifference = Double(absoluteFrame.width - absoluteInnerImageFrame.width)
+                let heightDifference = Double(absoluteFrame.height - absoluteInnerImageFrame.height)
+                
+                // Update view's frame
+                var viewCopied = view
+                
+                viewCopied.frame = absoluteInnerImageFrame
+                
+                request.views[viewIndex] = viewCopied
+                
+                for (constraintIndex, constraint) in request.constraints.enumerated() {
+                    if constraint.viewUniqueId != view.uniqueId { continue }
+                    
+                    var constraintCopied = constraint
+                    
+                    switch constraintCopied.attribute {
+                    case .top:
+                        constraintCopied.value += yDifference
+                        
+                    case .bottom:
+                        constraintCopied.value += xDifference
+                        
+                    case .left:
+                        constraintCopied.value += heightDifference
+                        
+                    case .right:
+                        constraintCopied.value += widthDifference
+                    }
+                        
+                    // Update constraint at index
+                    request.constraints[constraintIndex] = constraintCopied
+                }
+            }
+        }
     }
     
     private func convertUIViewsToFlatViewDTOs(_ uiViews: [UIView]) -> [UpsertScreenRequest.View] {
@@ -84,7 +134,7 @@ internal class Exporter {
     
     private func isViewUpsertable(_ uiView: UIView) -> Bool {
         if uiView.isHidden { return false }
-        else if uiView.asRectangle(frameRect: self.frameRectangle).isEmpty { return false }
+        else if uiView.asAbsoluteRectangle(frameRect: self.frameRectangle).isEmpty { return false }
         
         return true
     }
@@ -95,13 +145,17 @@ internal class Exporter {
             // TODO: Get actual view name
             name: uiView.className,
             contentMode: getConvertedContentMode(uiView.contentMode)!,
-            frame: uiView.asRectangle(frameRect: self.frameRectangle),
+            frame: uiView.asAbsoluteRectangle(frameRect: self.frameRectangle),
             zIndex: uiView.superview?.subviews.firstIndex(of: uiView) ?? 0
         )
         
         if let uiImageView = uiView as? UIImageView {
             view.type = .image
             view.image = getImage(from: uiImageView)
+            
+            if view.image!.isPresent {
+                self.absoluteImageFrames[uiImageView] = (absoluteFrame: view.frame, absoluteInnerImageFrame: uiImageView.asAbsoluteInnerImageRectangle(frameRect: self.frameRectangle)!)
+            }
         } else if let uiLabel = uiView as? UILabel {
             guard let label = getLabel(from: uiLabel) else { return nil }
             
@@ -121,7 +175,7 @@ internal class Exporter {
         guard let image = uiImageView.image else {
             return UpsertScreenRequest.View.Image(isPresent: false, size: nil)
         }
-        
+
         return UpsertScreenRequest.View.Image(
             isPresent: true,
             size: WidthHeight(width: Int(image.size.width), height: Int(image.size.height))

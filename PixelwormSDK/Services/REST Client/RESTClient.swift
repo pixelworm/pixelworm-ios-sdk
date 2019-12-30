@@ -85,7 +85,7 @@ internal class RESTClient {
         
         // Create data task
         let task = URLSession.shared.dataTask(with: request) { result in
-            switch (result) {
+            switch result {
             case .success(let response, let data):
                 if response.statusCode == 403 || response.statusCode == 404 {
                     DispatchQueue.main.async {

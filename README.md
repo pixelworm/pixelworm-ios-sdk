@@ -23,7 +23,7 @@ To integrate `Pixelworm iOS SDK` into your project you must add following line t
 `Podfile`.
 
 ```ruby
-pod 'PixelwormSDK', '~> 1.0.22'
+pod 'PixelwormSDK', '~> 1.0.23'
 ```
 
 ⚠️ Important: Don’t forget to execute the `bash` script below after adding pod lines:
