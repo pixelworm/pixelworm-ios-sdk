@@ -19,6 +19,7 @@
 		C342361922953CDB00265A0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C342361722953CDB00265A0E /* Main.storyboard */; };
 		C342361B22953CDD00265A0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C342361A22953CDD00265A0E /* Assets.xcassets */; };
 		C342361E22953CDD00265A0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C342361C22953CDD00265A0E /* LaunchScreen.storyboard */; };
+		C354C4F123CD9B270050CF8B /* UIDevice+IsSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C354C4F023CD9B270050CF8B /* UIDevice+IsSimulator.swift */; };
 		C35DEA5622D47B6200F6B5E4 /* CONTRIBUTING.md in Resources */ = {isa = PBXBuildFile; fileRef = C35DEA5522D47B6200F6B5E4 /* CONTRIBUTING.md */; };
 		C38A2FE92344DA9E007495FF /* ExtendedDefer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38A2FE82344DA9E007495FF /* ExtendedDefer.swift */; };
 		C3A35BC2235DB737009DB9A4 /* Exporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A35BC1235DB737009DB9A4 /* Exporter.swift */; };
@@ -101,6 +102,7 @@
 		C342361A22953CDD00265A0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C342361D22953CDD00265A0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C342361F22953CDD00265A0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C354C4F023CD9B270050CF8B /* UIDevice+IsSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+IsSimulator.swift"; sourceTree = "<group>"; };
 		C35DEA5522D47B6200F6B5E4 /* CONTRIBUTING.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTING.md; sourceTree = "<group>"; };
 		C38A2FE82344DA9E007495FF /* ExtendedDefer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendedDefer.swift; sourceTree = "<group>"; };
 		C3A35BC1235DB737009DB9A4 /* Exporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exporter.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 				C3AFDBEC2295C89300B9CCD6 /* NSObject+ClassName.swift */,
 				C3EC3D43231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift */,
 				C3B61A7523B21E43002FC3C0 /* UIImageView+GetInnerImageBounds.swift */,
+				C354C4F023CD9B270050CF8B /* UIDevice+IsSimulator.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				C3AFDBDA2295C46F00B9CCD6 /* UIView+AsRectangleAndAsWidthHeight.swift in Sources */,
 				C3AFDBDC2295C49600B9CCD6 /* UIColor+AsRGBA.swift in Sources */,
 				C3AFDBEB2295C87800B9CCD6 /* TypeCounter.swift in Sources */,
+				C354C4F123CD9B270050CF8B /* UIDevice+IsSimulator.swift in Sources */,
 				C3CE4B76229593D600099576 /* Pixelworm.swift in Sources */,
 				C3AFDBED2295C89300B9CCD6 /* NSObject+ClassName.swift in Sources */,
 				C3D762BF22959D47000E95CF /* RESTClientError.swift in Sources */,

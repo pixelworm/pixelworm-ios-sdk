@@ -24,7 +24,7 @@ To integrate `Pixelworm iOS SDK` into your project you must add following line t
 `Podfile`. For usage and installation instructions, visit [their website](https://cocoapods.org/).
 
 ```ruby
-pod 'PixelwormSDK', '~> 1.0.25'
+pod 'PixelwormSDK', '~> 1.0.26'
 ```
 
 ### Installing using Carthage
@@ -33,7 +33,7 @@ To integrate `Pixelworm iOS SDK` into your project you must add following line t
 `Cartfile`. For usage and installation instructions, visit [their website](https://github.com/Carthage/Carthage).
 
 ```ruby
-github "pixelworm/pixelworm-ios-sdk" ~> 1.0.25
+github "pixelworm/pixelworm-ios-sdk" ~> 1.0.26
 ```
 
 ### Usage

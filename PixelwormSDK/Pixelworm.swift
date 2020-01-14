@@ -33,15 +33,15 @@ public class Pixelworm {
     // MARK: - Public Methods
     
     public static func attach(apiKey: String, secretKey: String) {
-        #if !DEBUG
+        if !UIDevice.isSimulator {
+            pprint(
+                .warning,
+                "Your application must working under a simulator in order to " +
+                "export your views to Pixelworm servers. Cancelled attaching."
+            )
         
-        pprint(
-            .warning,
-            "Your application must be in DEBUG mode in order to " +
-            "export your views to Pixelworm servers. Cancelled attaching."
-        )
-        
-        #else
+            return
+        }
         
         if Pixelworm.shared.isAttached {
             pprint(.warning, "Pixelworm is already attached.")
@@ -66,21 +66,19 @@ public class Pixelworm {
         RESTClient.shared.config = (apiKey: apiKey, secretKey: secretKey)
         
         Pixelworm.shared.isAttached = true
-        
-        #endif
     }
     
     public static func detach() {
-        #if !DEBUG
-        
-        pprint(
-            .warning,
-            "Your application must be in DEBUG mode in order to " +
-            "export your views to Pixelworm servers. Cancelled detaching."
-        )
+        if !UIDevice.isSimulator {
+            pprint(
+                .warning,
+                "Your application must working under a simulator in order to " +
+                "export your views to Pixelworm servers. Cancelled detaching."
+            )
 
-        #else
-        
+            return
+        }
+
         if !Pixelworm.shared.isAttached {
             pprint(.warning, "Pixelworm is already detached.")
             
@@ -95,8 +93,6 @@ public class Pixelworm {
         RESTClient.shared.config = nil
         
         Pixelworm.shared.isAttached = false
-        
-        #endif
     }
     
     // MARK: - Private Methods
