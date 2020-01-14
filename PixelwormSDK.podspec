@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
     spec.name         = "PixelwormSDK"
-    spec.version      = "1.0.23"
+    spec.version      = "1.0.24"
     spec.summary      = "Pixelworm iOS SDK to export screens"
 
     spec.description  = <<-DESC

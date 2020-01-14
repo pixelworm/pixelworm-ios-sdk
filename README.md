@@ -8,6 +8,7 @@
 - [Purpose of this SDK](#purpose-of-this-sdk)
 - [Installation](#installation)
   - [Installing using Cocoapods](#installing-using-cocoapods)
+  - [Installing using Carthage](#installing-using-carthage)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
@@ -23,7 +24,7 @@ To integrate `Pixelworm iOS SDK` into your project you must add following line t
 `Podfile`.
 
 ```ruby
-pod 'PixelwormSDK', '~> 1.0.23'
+pod 'PixelwormSDK', '~> 1.0.24'
 ```
 
 ⚠️ Important: Don’t forget to execute the `bash` script below after adding pod lines:
@@ -32,7 +33,23 @@ pod 'PixelwormSDK', '~> 1.0.23'
 pod install
 ```
 
-## Usage
+### Installing using Carthage
+
+To integrate `Pixelworm iOS SDK` into your project you must add following line to your
+`Cartfile`.
+
+```ruby
+github "pixelworm/pixelworm-ios-sdk" ~> 1.0.24
+```
+
+⚠️ Important: Don’t forget to execute the `bash` script below after adding carthage lines:
+
+```bash
+carthage update --platform iOS
+```
+
+### Usage
+
 After integrating the SDK into your project navigate to your `AppDelegate.swift` file.
 - Add `import PixelwormSDK` to the beginning of the file.
 - In `application(_:didFinishLaunchingWithOptions:)` function, add the lines below.

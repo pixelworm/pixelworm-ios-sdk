@@ -37,6 +37,7 @@
 		C3AFDBED2295C89300B9CCD6 /* NSObject+ClassName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3AFDBEC2295C89300B9CCD6 /* NSObject+ClassName.swift */; };
 		C3AFDBEF2295D75600B9CCD6 /* PixelwormSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDBEE2295D75600B9CCD6 /* PixelwormSDK.podspec */; };
 		C3AFDBF12295D8E600B9CCD6 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = C3AFDBF02295D8E600B9CCD6 /* LICENSE */; };
+		C3B61A7623B21E43002FC3C0 /* UIImageView+GetInnerImageBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B61A7523B21E43002FC3C0 /* UIImageView+GetInnerImageBounds.swift */; };
 		C3CE4B76229593D600099576 /* Pixelworm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CE4B75229593D600099576 /* Pixelworm.swift */; };
 		C3D762B22295952B000E95CF /* RESTClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D762B12295952B000E95CF /* RESTClient.swift */; };
 		C3D762B42295967D000E95CF /* PixelwormSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34235F322953C6200265A0E /* PixelwormSDK.framework */; };
@@ -118,6 +119,7 @@
 		C3AFDBEC2295C89300B9CCD6 /* NSObject+ClassName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+ClassName.swift"; sourceTree = "<group>"; };
 		C3AFDBEE2295D75600B9CCD6 /* PixelwormSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PixelwormSDK.podspec; sourceTree = "<group>"; };
 		C3AFDBF02295D8E600B9CCD6 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		C3B61A7523B21E43002FC3C0 /* UIImageView+GetInnerImageBounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+GetInnerImageBounds.swift"; sourceTree = "<group>"; };
 		C3CE4B75229593D600099576 /* Pixelworm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixelworm.swift; sourceTree = "<group>"; };
 		C3D762B12295952B000E95CF /* RESTClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RESTClient.swift; path = "../Rest Client/RESTClient.swift"; sourceTree = "<group>"; };
 		C3D762BB22959C11000E95CF /* URLSession+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Result.swift"; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				C3AFDBE22295C57700B9CCD6 /* String+IsValidMD5.swift */,
 				C3AFDBEC2295C89300B9CCD6 /* NSObject+ClassName.swift */,
 				C3EC3D43231FA3A50011DDDF /* NSLayoutConstraint+ActualViews.swift */,
+				C3B61A7523B21E43002FC3C0 /* UIImageView+GetInnerImageBounds.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				C3D762B22295952B000E95CF /* RESTClient.swift in Sources */,
 				C3D762C62295A024000E95CF /* WidthHeight.swift in Sources */,
 				C3D762BC22959C11000E95CF /* URLSession+Result.swift in Sources */,
+				C3B61A7623B21E43002FC3C0 /* UIImageView+GetInnerImageBounds.swift in Sources */,
 				C3AFDBE62295C5DF00B9CCD6 /* HashHolder.swift in Sources */,
 				C3D762C422959FF7000E95CF /* Rectangle.swift in Sources */,
 				C3AFDBC82295BFA600B9CCD6 /* HTTPMethod.swift in Sources */,
@@ -849,6 +853,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 88MUA8FE52;
 				INFOPLIST_FILE = "PixelwormSDKExamples/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -868,6 +873,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 88MUA8FE52;
 				INFOPLIST_FILE = "PixelwormSDKExamples/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
