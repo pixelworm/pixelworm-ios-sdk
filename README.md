@@ -1,6 +1,8 @@
 ![Pixelworm Logo](https://raw.githubusercontent.com/Pixelworm/pixelworm-ios-sdk/master/pixelworm.png)
 
-<a href="https://cocoapods.org/pods/PixelwormSDK"><img src="https://img.shields.io/cocoapods/v/PixelwormSDK.svg" alt="Cocoapods" /></a>
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/PixelwormSDK.svg)](https://img.shields.io/cocoapods/v/PixelwormSDK.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Platform](https://img.shields.io/cocoapods/p/PixelwormSDK.svg?style=flat)](https://cocoapods.org/pods/PixelwormSDK)
 
 # Pixelworm iOS SDK
 
