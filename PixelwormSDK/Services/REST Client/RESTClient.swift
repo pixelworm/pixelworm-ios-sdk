@@ -86,8 +86,8 @@ internal class RESTClient {
         // Create data task
         let task = URLSession.shared.dataTask(with: request) { result in
             switch result {
-            case .success(let response, let data):
-                if response.statusCode == 403 || response.statusCode == 404 {
+            case let .success(parameters):
+                if parameters.response.statusCode == 403 || parameters.response.statusCode == 404 {
                     DispatchQueue.main.async {
                         completionHandler(.failure(RESTClientError.invalidCredentials))
                     }
@@ -95,7 +95,7 @@ internal class RESTClient {
                     return
                 }
                 
-                if response.statusCode == 402 {
+                if parameters.response.statusCode == 402 {
                     DispatchQueue.main.async {
                         completionHandler(.failure(RESTClientError.membershipExpired))
                     }
@@ -103,11 +103,11 @@ internal class RESTClient {
                     return
                 }
                 
-                if response.statusCode != 200 {
-                    let message = String(data: data, encoding: .utf8)
+                if parameters.response.statusCode != 200 {
+                    let message = String(data: parameters.data, encoding: .utf8)
                     
                     DispatchQueue.main.async {
-                        completionHandler(.failure(RESTClientError.unexpectedStatusCode(statusCode: response.statusCode, message: message)))
+                        completionHandler(.failure(RESTClientError.unexpectedStatusCode(statusCode: parameters.response.statusCode, message: message)))
                     }
                     
                     return
@@ -117,7 +117,7 @@ internal class RESTClient {
                 
                 // Try to deserialize response
                 do {
-                    deserializedResponse = try JSONDecoder().decode(ResponseBodyType.self, from: data)
+                    deserializedResponse = try JSONDecoder().decode(ResponseBodyType.self, from: parameters.data)
                 } catch let error {
                     DispatchQueue.main.async {
                         completionHandler(.failure(RESTClientError.deserializationFailure(error: error)))
