@@ -175,6 +175,10 @@ internal class Exporter {
         guard let image = uiImageView.image else {
             return UpsertScreenRequest.View.Image(isPresent: false, size: nil)
         }
+        
+        guard CGSize.zero != image.size else {
+            return UpsertScreenRequest.View.Image(isPresent: false, size: nil)
+        }
 
         return UpsertScreenRequest.View.Image(
             isPresent: true,
